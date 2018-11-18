@@ -1,58 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title><![CDATA[bias-variance]]></title>
-    <url>%2F2018%2F11%2F18%2Fbias-variance%2F</url>
-    <content type="text"><![CDATA[前言&emsp;&emsp;&ensp;昨天看书看到了“偏差和方差”这个字眼，想了一会心中没有得出确切的答案，明明前一阵子才在西瓜书中看过相关概念，现在知识点已经模糊，不仅感叹重温的必要性🌚，于是又把书翻出来重看了一遍，并决定把这块知识点写成博客，加强自己的理解和记忆。在写博客的过程中，我又上网查阅了相关的知识点，看了别人的博客，收获了和书中不一样的解释方式，结合图形更易理解，所以啊，写博客还是颇有收获的😁。 基本概念&emsp;&emsp;&ensp;这一部分我参考的是周志华的西瓜书，书中是通过对期望泛化误差的分解，用公式的推导进而解释偏差、方差以及噪声的概念。这里，我不作推导，但仍用书中的符号进行表示，首先给出相关概念的符号表示 符号 含义 $\boldsymbol x$ 测试样本 $ D $ 训练集 $y_D$ $\boldsymbol x$在数据集中的标记 $y$ $\boldsymbol x$的真实标记 $f(\boldsymbol x;D)$ 训练集$D$上学得模型$f$在$\boldsymbol x$上的预测输出 $\hat{f}(\boldsymbol x)$ 期望预测 $var(\boldsymbol x)$ 使用样本数相同的不同训练集产生的方差 $\epsilon^2$ 噪声 $bias^2(\boldsymbol x)$ 偏差 其中，学习算法的期望预测为 \hat{f}(\boldsymbol x) = E_D[f(\boldsymbol x;D)]算法的期望泛化误差为 E(f;D) = E_D[(f(\boldsymbol x;D)-y_D)^2]假定噪声期望为零，即 E_D[y_D-y] = 0对泛化误差进行分解，最终可以得到 E(f;D) = E_D[(f(\boldsymbol x;D)-\hat{f}(\boldsymbol x))^2]+(\hat{f}(\boldsymbol x)-y)^2+E_D[(y_D-y)^2]于是， E(f;D) = bias^2(\boldsymbol x)+var(\boldsymbol x)+\epsilon^2也就是说，泛化误差可以分解为偏差、方差与噪声之和。 再来看偏差、方差、噪声它们各自的含义： 偏差：bias^2(\boldsymbol x)=(\hat{f}(\boldsymbol x)-y)^2度量了学习算法的期望预测与真实结果的偏离程度，刻画了学习算法本身的拟合能力。 方差 ：var(\boldsymbol x)=E_D[(f(\boldsymbol x;D)-\hat{f}(\boldsymbol x))^2]度量了同样大小的训练集的变动所导致的学习性能的变化，刻画了数据扰动所造成的影响。 噪声：\epsilon^2=E_D[(y_D-y)^2]表达了在当前任务上任何学习算法所能达到的期望泛化误差的下界，刻画了学习问题本身的难度。&emsp;&emsp;&ensp;综上，泛化性能是由学习算法的能力、数据的充分性以及学习任务本身的难度所共同决定的，为了取得好的泛化性能，需要使偏差较小，能够充分拟合数据，也要使方差较小，使得数据扰动产生的影响小。 &emsp;&emsp;&ensp;以上是我在书中获得的解释，后来我又在某些博客中看到了更加直观的图形解释。&emsp;&emsp;&ensp;如图，我们可以使用靶心图创建偏差和方差的图形可视化。目标的中心是一个完美预测正确值的模型，随着我们远离靶心，我们的预测变得越来越糟，我们可以重复整个模型构建过程，以便在目标上获得许多单独的命中。有时我们会得到很好的训练数据分布，所以我们预测得很好，且接近靶心，而有时我们的训练数据可能充满了异常值或非标准值，导致预测较差，这些不同的实现导致目标上的命中分散。 偏差-方差窘境&emsp;&emsp;&ensp;一般，偏差和方差是有冲突的，称为偏差-方差窘境（bias-variance dilemma）在训练不足时，学习器的拟合能力不够强，训练数据的扰动不足以使学习器产生显著变化，此时偏差主导了泛化错误率。随着训练程度的加深，学习器的拟合能力逐渐增强，训练数据发生的扰动渐渐能被学习器学到，方差逐渐主导了泛化错误率。训练程度充足后，学习器的拟合能力已非常强，训练数据发生的轻微扰动都会导致学习器发生显著的变化，若训练数据自身的、非全局的特性被学习器学到了，则将发生过拟合。下面的这张图正好说明了这点&emsp;&emsp;&ensp;其实，处理偏差和方差实际上是关于处理过度拟合和欠拟合。随着越来越多的参数被添加到模型中，模型的复杂性上升，变化成为我们首要关注的问题，所以方差变大，而偏差则逐渐下降。&emsp;&emsp;&ensp;正如上一节的那张图所示，欠拟合实际上对应的是高偏差，而过拟合对应的又是高方差。而我们的目的是要寻找使得泛化误差取得最小值的那个最佳点，这就需要让偏差和方差在一定程度上折中取值。 偏差-方差折中&emsp;&emsp;&ensp;很多算法都是可以控制训练程度的，比如决策树可以控制层数，神经网络可以控制训练轮数，集成学习的方法可控制基学习器的个数。&emsp;&emsp;&ensp;我看到偏差-方差折中这一概念是在《机器学习实战》这本书中遇到的，那一章节主要讲了回归。书中提到，线性回归容易发生欠拟合，因为它求的是具有最小均方误差的无偏估计，而我们可以在估计中引入一些偏差用来降低预测的均方误差，有一个方法就是局部加权线性回归。这里不作介绍，感兴趣的小伙伴可以阅读《机器学习实战》的8.2节，得出的结论是选取的核越小，模型复杂度就越高，可以增大方差减小偏差。而当模型十分复杂以至于发生了过拟合时，可以采用缩减法，将一些系数进行缩减，可以减少模型的复杂度，降低方差。书中8.3节和8.4节主要介绍了岭回归、lasso法和前向逐步回归法这些缩减方法，并且结合实例进行了分析，感兴趣的小伙伴可以详细阅读。 后记&emsp;&emsp;&ensp;花了点时间，总算对偏差和方差的概念又加深了一遍印象，以后还是要注意温故而知新呐🌝。]]></content>
+<search> 
+  
+    
+    <entry>
+      <title>bias-variance</title>
+      <link href="/2018/11/18/bias-variance/"/>
+      <url>/2018/11/18/bias-variance/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><font face="楷体">前言</font></h2><p>&emsp;&emsp;&ensp;昨天看书看到了“偏差和方差”这个字眼，想了一会心中没有得出确切的答案，明明前一阵子才在西瓜书中看过相关概念，现在知识点已经模糊，不仅感叹重温的必要性🌚，于是又把书翻出来重看了一遍，并决定把这块知识点写成博客，加强自己的理解和记忆。在写博客的过程中，我又上网查阅了相关的知识点，看了别人的博客，收获了和书中不一样的解释方式，结合图形更易理解，所以啊，写博客还是颇有收获的😁。</p><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a><font face="楷体">基本概念</font></h2><p>&emsp;&emsp;&ensp;这一部分我参考的是周志华的西瓜书，书中是通过对期望泛化误差的分解，用公式的推导进而解释偏差、方差以及噪声的概念。这里，我不作推导，但仍用书中的符号进行表示，首先给出相关概念的符号表示</p><div class="table-container"><table><thead><tr><th style="text-align:center">符号</th><th style="text-align:center">含义</th></tr></thead><tbody><tr><td style="text-align:center">$\boldsymbol x$</td><td style="text-align:center">测试样本</td></tr><tr><td style="text-align:center">$ D $</td><td style="text-align:center">训练集</td></tr><tr><td style="text-align:center">$y_D$</td><td style="text-align:center">$\boldsymbol x$在数据集中的标记</td></tr><tr><td style="text-align:center">$y$</td><td style="text-align:center">$\boldsymbol x$的真实标记</td></tr><tr><td style="text-align:center">$f(\boldsymbol x;D)$</td><td style="text-align:center">训练集$D$上学得模型$f$在$\boldsymbol x$上的预测输出</td></tr><tr><td style="text-align:center">$\hat{f}(\boldsymbol x)$</td><td style="text-align:center">期望预测</td></tr><tr><td style="text-align:center">$var(\boldsymbol x)$</td><td style="text-align:center">使用样本数相同的不同训练集产生的方差</td></tr><tr><td style="text-align:center">$\epsilon^2$</td><td style="text-align:center">噪声</td></tr><tr><td style="text-align:center">$bias^2(\boldsymbol x)$</td><td style="text-align:center">偏差</td></tr></tbody></table></div><p>其中，学习算法的期望预测为</p><script type="math/tex; mode=display">\hat{f}(\boldsymbol x) = E_D[f(\boldsymbol x;D)]</script><p>算法的期望泛化误差为</p><script type="math/tex; mode=display">E(f;D) = E_D[(f(\boldsymbol x;D)-y_D)^2]</script><p>假定噪声期望为零，即</p><script type="math/tex; mode=display">E_D[y_D-y] = 0</script><p>对泛化误差进行分解，最终可以得到</p><script type="math/tex; mode=display">E(f;D) = E_D[(f(\boldsymbol x;D)-\hat{f}(\boldsymbol x))^2]+(\hat{f}(\boldsymbol x)-y)^2+E_D[(y_D-y)^2]</script><p>于是，</p><script type="math/tex; mode=display">E(f;D) = bias^2(\boldsymbol x)+var(\boldsymbol x)+\epsilon^2</script><p>也就是说，泛化误差可以分解为偏差、方差与噪声之和。</p><p>再来看偏差、方差、噪声它们各自的含义：</p><ul><li>偏差：<script type="math/tex">bias^2(\boldsymbol x)=(\hat{f}(\boldsymbol x)-y)^2</script><br>度量了学习算法的期望预测与真实结果的偏离程度，刻画了学习算法本身的<font color="red">拟合能力</font>。</li><li>方差 ：<script type="math/tex">var(\boldsymbol x)=E_D[(f(\boldsymbol x;D)-\hat{f}(\boldsymbol x))^2]</script><br>度量了同样大小的训练集的变动所导致的学习性能的变化，刻画了<font color="red">数据扰动所造成的影响</font>。</li><li>噪声：<script type="math/tex">\epsilon^2=E_D[(y_D-y)^2]</script><br>表达了在当前任务上任何学习算法所能达到的期望泛化误差的下界，刻画了学习问题<font color="red">本身的难度</font>。<br>&emsp;&emsp;&ensp;综上，泛化性能是由学习算法的能力、数据的充分性以及学习任务本身的难度所共同决定的，为了取得好的泛化性能，需要使偏差较小，能够充分拟合数据，也要使方差较小，使得数据扰动产生的影响小。</li></ul><hr><p>&emsp;&emsp;&ensp;以上是我在书中获得的解释，后来我又在某些<a href="http://scott.fortmann-roe.com/docs/BiasVariance.html" target="_blank" rel="noopener">博客</a>中看到了更加直观的图形解释。<br><img src="/2018/11/18/bias-variance/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-18%20%E4%B8%8A%E5%8D%8810.25.32.png" alt="屏幕快照 2018-11-18 上午10.25.32"><br>&emsp;&emsp;&ensp;如图，我们可以使用靶心图创建偏差和方差的图形可视化。目标的中心是一个完美预测正确值的模型，随着我们远离靶心，我们的预测变得越来越糟，我们可以重复整个模型构建过程，以便在目标上获得许多单独的命中。有时我们会得到很好的训练数据分布，所以我们预测得很好，且接近靶心，而有时我们的训练数据可能充满了异常值或非标准值，导致预测较差，这些不同的实现导致目标上的命中分散。</p><h2 id="偏差-方差窘境"><a href="#偏差-方差窘境" class="headerlink" title="偏差-方差窘境"></a><font face="楷体">偏差-方差窘境</font></h2><p>&emsp;&emsp;&ensp;一般，偏差和方差是有冲突的，称为偏差-方差窘境（bias-variance dilemma）在训练不足时，学习器的拟合能力不够强，训练数据的扰动不足以使学习器产生显著变化，此时偏差主导了泛化错误率。随着训练程度的加深，学习器的拟合能力逐渐增强，训练数据发生的扰动渐渐能被学习器学到，方差逐渐主导了泛化错误率。训练程度充足后，学习器的拟合能力已非常强，训练数据发生的轻微扰动都会导致学习器发生显著的变化，若训练数据自身的、非全局的特性被学习器学到了，则将发生过拟合。下面的这张图正好说明了这点<br><img src="/2018/11/18/bias-variance/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-18%20%E4%B8%8A%E5%8D%8810.25.13.png" alt="屏幕快照 2018-11-18 上午10.25.13"><br>&emsp;&emsp;&ensp;其实，处理偏差和方差实际上是关于处理过度拟合和欠拟合。随着越来越多的参数被添加到模型中，模型的复杂性上升，变化成为我们首要关注的问题，所以方差变大，而偏差则逐渐下降。<br>&emsp;&emsp;&ensp;正如上一节的那张图所示，欠拟合实际上对应的是高偏差，而过拟合对应的又是高方差。而我们的目的是要寻找使得泛化误差取得最小值的那个最佳点，这就需要让偏差和方差在一定程度上折中取值。</p><h2 id="偏差-方差折中"><a href="#偏差-方差折中" class="headerlink" title="偏差-方差折中"></a><font face="楷体">偏差-方差折中</font></h2><p>&emsp;&emsp;&ensp;很多算法都是可以控制训练程度的，比如决策树可以控制层数，神经网络可以控制训练轮数，集成学习的方法可控制基学习器的个数。<br>&emsp;&emsp;&ensp;我看到偏差-方差折中这一概念是在《机器学习实战》这本书中遇到的，那一章节主要讲了回归。书中提到，线性回归容易发生欠拟合，因为它求的是具有最小均方误差的无偏估计，而我们可以在估计中引入一些偏差用来降低预测的均方误差，有一个方法就是<font color="red">局部加权线性回归</font>。这里不作介绍，感兴趣的小伙伴可以阅读《机器学习实战》的8.2节，得出的结论是选取的核越小，模型复杂度就越高，可以增大方差减小偏差。而当模型十分复杂以至于发生了过拟合时，可以采用缩减法，将一些系数进行缩减，可以减少模型的复杂度，降低方差。书中8.3节和8.4节主要介绍了<font color="red">岭回归、lasso法和前向逐步回归法</font>这些缩减方法，并且结合实例进行了分析，感兴趣的小伙伴可以详细阅读。</p><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a><font face="楷体">后记</font></h2><p>&emsp;&emsp;&ensp;花了点时间，总算对偏差和方差的概念又加深了一遍印象，以后还是要注意温故而知新呐🌝。</p>]]></content>
+      
+      
       <categories>
-        <category>Hexo</category>
+          
+          <category> Hexo </category>
+          
       </categories>
-      <tags>
-        <tag>Knowledge</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Decorate my Blog]]></title>
-    <url>%2F2018%2F11%2F16%2FDecorate-my-Blog%2F</url>
-    <content type="text"><![CDATA[&emsp;&emsp;&ensp;折腾了两天总算把自己的博客装饰地像个样子了🙃，现在就来整理一下借鉴了哪些资料吧。&emsp;&emsp;&ensp;一篇来自CSDN，一篇来自简书，两篇介绍的都是NexT主题的使用，介绍的设置功能比较多，笔者因为懒癌晚期就选了几个自己觉得还不错的进行了实际操作，操作过程中发现两个都有点小毛病，但是结合起来，再加上自己的摸爬滚打，还是可以成功地把自己的博客装饰的像个样的🌚。&emsp;&emsp;&ensp;上面两篇文章提到的网易云跟帖已经关闭，改用了来必力，不过我对此不是很感兴趣……jiathis分享目前也停止了服务，但是百度当然依旧坚挺……多说评论也被勒令停止服务，可以改用Gitment进行评论功能的实现。还有还有，统计全站总访问量的不蒜子，因为七牛强制过期原有的域名，现在也改了操作，不过很简单，直接看解决方法。另外，笔者在设置头像的过程中，跟着上面两篇的介绍虽然设置了美美的头像🤓，但换了一台电脑居然无法显示，于是又借鉴了这篇文章，把问题解决了。&emsp;&emsp;&ensp;还有很多功能都没尝试操作，感兴趣的小伙伴们可以再折腾一波😁。]]></content>
+      
+      
+        <tags>
+            
+            <tag> Knowledge </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Decorate my Blog</title>
+      <link href="/2018/11/16/Decorate-my-Blog/"/>
+      <url>/2018/11/16/Decorate-my-Blog/</url>
+      
+        <content type="html"><![CDATA[<p>&emsp;&emsp;&ensp;折腾了两天总算把自己的博客装饰地像个样子了🙃，现在就来整理一下借鉴了哪些资料吧。<br>&emsp;&emsp;&ensp;一篇来自<a href="https://blog.csdn.net/com_ma/article/details/76039859" target="_blank" rel="noopener">CSDN</a>，一篇来自<a href="https://www.jianshu.com/p/9f0e90cc32c2" target="_blank" rel="noopener">简书</a>，两篇介绍的都是NexT主题的使用，介绍的设置功能比较多，笔者因为懒癌晚期就选了几个自己觉得还不错的进行了实际操作，操作过程中发现两个都有点小毛病，但是结合起来，再加上自己的摸爬滚打，还是可以成功地把自己的博客装饰的像个样的🌚。<br>&emsp;&emsp;&ensp;上面两篇文章提到的网易云跟帖已经关闭，改用了来必力，不过我对此不是很感兴趣……jiathis分享目前也停止了服务，但是<a href="https://asdfv1929.github.io/2018/05/25/baidu-share/" target="_blank" rel="noopener">百度</a>当然依旧坚挺……多说评论也被勒令停止服务，可以改用<a href="https://sjq597.github.io/2018/05/18/Hexo-%E4%BD%BF%E7%94%A8Gitment%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/" target="_blank" rel="noopener">Gitment</a>进行评论功能的实现。还有还有，统计全站总访问量的不蒜子，因为七牛强制过期原有的域名，现在也改了操作，不过很简单，直接看<a href="http://ibruce.info/2015/04/04/busuanzi/" target="_blank" rel="noopener">解决方法</a>。另外，笔者在设置头像的过程中，跟着上面两篇的介绍虽然设置了美美的头像🤓，但换了一台电脑居然无法显示，于是又借鉴了<a href="https://blog.csdn.net/qq_30242609/article/details/53440869" target="_blank" rel="noopener">这篇文章</a>，把问题解决了。<br>&emsp;&emsp;&ensp;还有很多功能都没尝试操作，感兴趣的小伙伴们可以再折腾一波😁。</p>]]></content>
+      
+      
       <categories>
-        <category>Hexo</category>
+          
+          <category> Hexo </category>
+          
       </categories>
-      <tags>
-        <tag>Chat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[F107 Calculate]]></title>
-    <url>%2F2018%2F11%2F14%2FF107-Calculate%2F</url>
-    <content type="text"><![CDATA[前言&emsp;&emsp;&ensp;首先，要说明的是这只一个很简单的小任务，只涉及到简单的数据处理，界面设计和可执行文件的生成。那么，为什么笔者能长篇大论地写出这么多废话呢🌝，一是刚搭建好自己的博客，心血来潮、三分钟热度，想把自己的第一篇博客写的像个样子🙃，二来也是为了熟悉熟悉Markdown这个很好的写作语言，锻炼锻炼表达能力和总结能力，三来就是因为太闲了，学习是不可能学习的，这辈子都不想学习，只能写写博客找点事做给自己心灵一点安慰🌚。好了，下面就开始说说我这个小任务吧。 背景&emsp;&emsp;&ensp;由于项目设计被随机分到了一个做微波方向的老师那，有了个比较高大上的项目名称——超材料阵列天线及其在射电望远镜中的应用🤔。当然，对于没学过微波、天线等各种专业课的渣渣，拿到这个题目肯定是一脸懵逼🌚，万幸老师了解到我的研究生方向是图像处理，于是给我先分配了一个数据处理的任务。废话不多说，这次的任务是根据按照某种规则存放在文件中已经测得的数据，通过公式计算得到太阳射电指数F107，那么先简单介绍一下这个高大上的名词吧🙃。 关于F107&emsp;&emsp;&ensp;太阳F107指数，就是太阳10.7厘米波长（2800-2840MHz，视无线电环境而定）的射电辐射通量，是表征太阳活动水平的一个重要参量，和黑子的变化具有很高的相关性，足以反映太阳长期活动和日地效应的变化。其单位为S.F.U（太阳流量单位，Solar Flux Unit），1S.F.U=10-22w Hz-1m-2，其一般范围在60到300之间。平均F107指数高于180的年份称为典型的太阳活动峰年，平均F107指数低于90的年份称为典型的太阳活动谷年。因此，常用F107 指数划分太阳活动的总体水平。&emsp;&emsp;&ensp;目前国家气象局卫星气象中心在山东荣成石岛建有能观测F107指数的太阳射电望远镜，定标过程分为三个步骤：第一步： 天线对准太阳跟观测记录数据；每3分钟形成一个数据文件；第二步： 天线偏离太阳两度，并开启噪声源记录3分钟，形成一个文件；第三步： 接收机关闭噪声源，并记录数据3分钟，形成一个文件；&emsp;&emsp;&ensp;执行完上述三步后，噪声源关闭，天线重新对准太阳进行跟踪。上述步骤分别在每天观测的9:00、12:00:和15：00进行三次。&emsp;&emsp;&ensp;然后，我们就可以从每天的观测文件中提取出三个信息量，分别是：$ R_S $（太阳）、$ R_N $（噪声源）、$ R_B $（冷空），再通过公式: S=S_0（R_S—R_B）/（R_N）就可以求得太阳射电流量，其中$ S_0 $为修正系数。&emsp;&emsp;&ensp;说了这么多，你可能一头雾水，没事，我也什么都不懂🌚，但是我们的任务很简单，就是通过简单的文件操作，把测得的数据整理成自己想要的模样，再通过上述提到的非常简单的公式计算出$ S_0$，通过长期的$ S_0 $得到最佳的修正系数，由于老师只给了我几天有用的测量数据 (其实给了一堆，后来发现很多天机器在维修，数据都没有用🙃)，我就直接采取求平均值的方法得到了看似最佳的最佳修正系数🌝，数据多的话可以采用机器学习的方法，当然，不在本文的讨论范围内，最后再把写好的文件生成一个在其他电脑上可执行的exe就OK了(博主用的是Mac，所以生成的是OS系统下的APP，后续也会提及exe和APP的生成方法)。 任务要求及描述&emsp;&emsp;&ensp;现在，我们可以从空间环境预报中心查询到每天的F107指数，然后就可以通过石岛望远镜观测的每天记录数据，求得本望远镜系统的$S_0$参数，并统计长期的$S_0$的稳定性情况，最后求得最佳$S_0$，用于石岛望远镜每天自动计算F107指数。另外，要求有自动导入数据分析功能，即生成一个exe文件，通过选择文件夹的方式导入一天的所有观测数据，直接计算出当天的F107指数$ S $，并显示在屏幕上。&emsp;&emsp;&ensp;那么，我得到的原始数据是什么样的呢？老师给我发了一个文件夹，记录了今年10月1日至11月6日的所有观测数据(emmm，后来发现由于机器故障，只有10月25日至11月6日的数据可用🌚) &emsp;&emsp;&ensp;打开这个文件夹就惊了，竟然包含了7350个txt文件……先来看看这些文件是怎么命名的吧，随便选取一个 &emsp;&emsp;&ensp;前面一串英文是什么？这不重要，我门只需关注中间的一段数字即可，这个文档的数字是20181101144002，表示的是这是2018年11月01日14时40分02秒生成的记录数据文件，文件中包含了大约三分钟的记录数据。我们再将这个文档打开，哇，又是一堆数据，我们截取部分&emsp;&emsp;&ensp;好了，这些数据具体是什么意思呢？我也没关注一共有多少行，反正就是3分钟左右的数据量就是了，显而易见，第一列数据表示的年月日，第二列表示的时分秒，第三列我也不晓得是啥，反正不重要😂，4、5、6列就是我们记录的数据，分别是在2801MHz±5MHz, 4554MHz±5MHz以及9081MHz±5MHz的采集数据，根据之前F107指数的介绍，我们这里只需关注第4列数据，至于最后一列数据，既然用不到，管它干啥🙃。那么，这么多的记录数据，哪些是太阳数据$ R_S $，哪些是噪声源数据$ R_N $，又是哪些是冷空数据$ R_B $呢？咨询过老师得知，每天的9：00：00-9：02：59，12：00：00-12：02：59，15：00：00-15：02：59的所有数据是噪声源数据$ R_N $，9：03：00-9：05：59，12：03：00-12：05：59，15：03：00-15：05：59的所有数据是冷空$ R_B $，其余的所有数据是太阳数据$ R_S $，这下思路就很明了了，只需提取出当天的$ R_S $、$ R_N $和$ R_B $，那么什么问题都不在话下🤓。 思路及实现&emsp;&emsp;&ensp;先给出我的代码，很简单，都是基础的Python，稍微难懂的都加了注释，所以这里就只提个思路就好。由于笔者刚接触Python没多久，所以很多地方都没有优化，写的不好请见谅😉。哦哦，至于老师发给我的那些观测数据，因为老师说那是机密文件🤔，所以我就不上传了吧😂。 数据处理&emsp;&emsp;&ensp;首先，我们要将这些堆杂在一起的文档按日期进行整合，即把属于一天的所有数据合并到一个文件中，形成这样的一种形式&emsp;&emsp;&ensp;实现起来很简单，我代码中的CombFile( )函数就实现了该功能，后来，老师给我说当时给我的文件是特殊情况🌚，以后需要处理的数据如下面这种样式，即已经按日期分类好，但没有进行整合&emsp;&emsp;&ensp;没事，那样更简单，我的CombFile02( )就实现了整合的功能。整合得到当天的testdata之后，那么一切都变得简单了，函数GetR( )将数据进行划分，得到当天所有的$ R_S $、$R_N$和$ R_B $数据，函数calS0( )再根据$ S $和$ S_0 $之间的公式关系，以及官网查得的数据$ S $，即可计算得出当天的$ S_0 $，计算出多天的$S_0$，我们这里就简单地去个平均，作为我们的最佳修正系数，之后，再用函数PredictS( )，也就是calS0( )的逆过程，把最佳修正系数作为当天的$ S_0 $，就可以预测出当天的$ S $，可以和官网公布的数据进行比较，看看误差，当然，由于训练样本太小，仅仅采用取平均的方法，误差肯定有些偏大🌚，没事……笔者不在乎，重在体验😂。&emsp;&emsp;&ensp;哇，到这里数据处理部分就这么结束了？可见这个项目是有多简单🌝，我还在这里兴致勃勃地长篇大论……好了，下面就剩下用户界面和生成一个可执行文件了。 用户界面&emsp;&emsp;&ensp;这里主要用的Python自带的tkinter库，在制图方面很有用，有兴趣的朋友可以自己学习一个。我们这里用到的就很简单了，一个Button产生按钮，filedialog用作显示对话框，提示用户打开文件夹，最后再用messagebox来显示计算结果就OK了。我们运行一下看看是什么样子&emsp;&emsp;&ensp;可以看到出现了一个对话框，然后我们点击对话框中的按钮，就可以进行选择文件夹了&emsp;&emsp;&ensp;随意选取一个文件夹，就可以计算出结果啦！&emsp;&emsp;&ensp;结果是多少不重要，反正是实现了任务要求了🤓。好了一个简单的项目到此就基本结束了，下面就来生成一个可执行的文件，可以用于其他没有安装Python及相关库的上位机中。 生成可执行文件Mac OS系统&emsp;&emsp;&ensp;这一块我是实在不想写的……捣鼓了那么久最后也没捣鼓出来，主要用到的是py2app，看了很多博客、论坛，都是大同小异，可以根据这篇操作一波，当然里面是没有涉及到遇到的各种bug的，如果你能一帆风顺地完成，emmm那么就很简单了😂。期间我遇到了各种奇葩的bug，不知道是环境还是啥问题，找了小伙伴来也没能解决，最后自己一顿骚操作，居然生成了一个APP，把我激动地半天，我还给这个APP加了一个图标，附加了其他相关信息&emsp;&emsp;&ensp;最后发现这玩意只能在我的Mac上运行，在其他的Mac上就GG了🌚，不管了，放弃了，我就是这么懒🙃。&emsp;&emsp;&ensp;有兴趣的小伙伴可以跟着教程操作一波，简书里的这篇文章写的就很详细了，介绍了如何添加图标，加入版本，版权等信息。另外推荐一个网站，里面有很多有趣的图标可供选择。 Windows系统&emsp;&emsp;&ensp;在Mac OS系统下倒腾失败后，我又开始倒腾Windows……查阅相关介绍后，发现在Windows下有两种生成方式，一个就是和py2app很像的py2exe了……网上介绍很简单，但是有心理阴影的我又没搞出来🙃，后来发现py2exe已经十多年没更新了……出各种bug可能也是难免的吧。所以当然就要推荐第二种方法了——pyinstalller，真的是简单又方便，同样，这里也包含了很多命令可以添加图标之类的各种信息。当然，要想把图标做的更完美，还是需要修改一些文件内容的，可以综合参考一下这篇文章和这一篇，最终，我终于生成了一个exe&emsp;&emsp;&ensp;第一张图是文件存放在桌面或者文件夹中的显示图标。第二张图是运行之后的对话窗口，同样具有按钮，细心的小伙伴还会发现在对话窗口的左上角还有一个小太阳，没错，这就是完善图标后的效果，对应的就是第三张图在任务栏中显示的图标，同样也是一个小太阳。于是在Windows下的可执行文件就生成啦。&emsp;&emsp;&ensp;在其他上位机测试过也可以执行，终于完事了……天呐，我实在太菜了，捣鼓了这么久才弄出来🌚，没事，重在折腾…… 后记&emsp;&emsp;&ensp;把可执行文件发给老师之后也就算完成任务了，闲下来的我花了点时间学了点GitHUb，又搭了一个HEXO博客，然后写下了这篇废话连篇的博客。这篇博客断断续续竟然写了两天，真的敬佩那些坚持每周一更的大牛们，而且还是高质量的文章，自己也不晓得能不能坚持……emmm，继续努力吧😂，未来的路还很长，道阻且长，行则将至，共勉。]]></content>
+      
+      
+        <tags>
+            
+            <tag> Chat </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>F107 Calculate</title>
+      <link href="/2018/11/14/F107-Calculate/"/>
+      <url>/2018/11/14/F107-Calculate/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><font face="楷体">前言</font></h2><p>&emsp;&emsp;&ensp;首先，要说明的是这只一个很简单的小任务，只涉及到简单的数据处理，界面设计和可执行文件的生成。那么，为什么笔者能长篇大论地写出这么多废话呢🌝，一是刚搭建好自己的博客，心血来潮、三分钟热度，想把自己的第一篇博客写的像个样子🙃，二来也是为了熟悉熟悉Markdown这个很好的写作语言，锻炼锻炼表达能力和总结能力，三来就是因为太闲了，学习是不可能学习的，这辈子都不想学习，只能写写博客找点事做给自己心灵一点安慰🌚。好了，下面就开始说说我这个小任务吧。</p><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a><font face="楷体">背景</font></h2><p>&emsp;&emsp;&ensp;由于项目设计被随机分到了一个做微波方向的老师那，有了个比较高大上的项目名称——超材料阵列天线及其在射电望远镜中的应用🤔。当然，对于没学过微波、天线等各种专业课的渣渣，拿到这个题目肯定是一脸懵逼🌚，万幸老师了解到我的研究生方向是图像处理，于是给我先分配了一个数据处理的任务。废话不多说，这次的任务是根据按照某种规则存放在文件中已经测得的数据，通过公式计算得到太阳射电指数F107，那么先简单介绍一下这个高大上的名词吧🙃。</p><h2 id="关于F107"><a href="#关于F107" class="headerlink" title="关于F107"></a><font face="楷体">关于F107</font></h2><p>&emsp;&emsp;&ensp;太阳F107指数，就是太阳10.7厘米波长（2800-2840MHz，视无线电环境而定）的射电辐射通量，是表征太阳活动水平的一个重要参量，和黑子的变化具有很高的相关性，足以反映太阳长期活动和日地效应的变化。其单位为S.F.U（太阳流量单位，Solar Flux Unit），1S.F.U=10-22w Hz-1m-2，其一般范围在60到300之间。平均F107指数高于180的年份称为典型的太阳活动峰年，平均F107指数低于90的年份称为典型的太阳活动谷年。因此，常用F107 指数划分太阳活动的总体水平。<br>&emsp;&emsp;&ensp;目前国家气象局卫星气象中心在山东荣成石岛建有能观测F107指数的太阳射电望远镜，定标过程分为三个步骤：<br>第一步： 天线对准太阳跟观测记录数据；每3分钟形成一个数据文件；<br>第二步： 天线偏离太阳两度，并开启噪声源记录3分钟，形成一个文件；<br>第三步： 接收机关闭噪声源，并记录数据3分钟，形成一个文件；<br>&emsp;&emsp;&ensp;执行完上述三步后，噪声源关闭，天线重新对准太阳进行跟踪。上述步骤分别在每天观测的9:00、12:00:和15：00进行三次。<br>&emsp;&emsp;&ensp;然后，我们就可以从每天的观测文件中提取出三个信息量，分别是：$ R_S $（太阳）、$ R_N $（噪声源）、$ R_B $（冷空），再通过公式:</p><script type="math/tex; mode=display">S=S_0（R_S—R_B）/（R_N）</script><p>就可以求得太阳射电流量，其中$ S_0 $为修正系数。<br>&emsp;&emsp;&ensp;说了这么多，你可能一头雾水，没事，我也什么都不懂🌚，但是我们的任务很简单，就是通过简单的文件操作，把测得的数据整理成自己想要的模样，再通过上述提到的非常简单的公式计算出$ S_0$，通过长期的$ S_0 $得到最佳的修正系数，由于老师只给了我几天有用的测量数据 (其实给了一堆，后来发现很多天机器在维修，数据都没有用🙃)，我就直接采取求平均值的方法得到了看似最佳的最佳修正系数🌝，数据多的话可以采用机器学习的方法，当然，不在本文的讨论范围内，最后再把写好的文件生成一个在其他电脑上可执行的exe就OK了(博主用的是Mac，所以生成的是OS系统下的APP，后续也会提及exe和APP的生成方法)。</p><h2 id="任务要求及描述"><a href="#任务要求及描述" class="headerlink" title="任务要求及描述"></a><font face="楷体">任务要求及描述</font></h2><p>&emsp;&emsp;&ensp;现在，我们可以从<a href="http://www.sepc.ac.cn" target="_blank" rel="noopener">空间环境预报中心</a>查询到每天的F107指数，然后就可以<strong>通过石岛望远镜观测的每天记录数据，求得本望远镜系统的$S_0$参数，并统计长期的$S_0$的稳定性情况，最后求得最佳$S_0$</strong>，用于石岛望远镜每天自动计算F107指数。另外，要求有自动导入数据分析功能，即<strong>生成一个exe文件</strong>，通过选择文件夹的方式导入一天的所有观测数据，直接计算出当天的F107指数$ S $，并显示在屏幕上。<br>&emsp;&emsp;&ensp;那么，我得到的原始数据是什么样的呢？老师给我发了一个文件夹，记录了今年10月1日至11月6日的所有观测数据(emmm，后来发现由于机器故障，只有10月25日至11月6日的数据可用🌚)</p><p><center><img src="/2018/11/14/F107-Calculate/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-14%20%E4%B8%8B%E5%8D%887.20.59-3.png" width="100" hegiht="100"></center>&emsp;&emsp;&ensp;打开这个文件夹就惊了，竟然包含了7350个txt文件……先来看看这些文件是怎么命名的吧，随便选取一个</p><p><center><img src="/2018/11/14/F107-Calculate/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-14%20%E4%B8%8B%E5%8D%8811.51.51-1.png" width="100" hegiht="100"></center>&emsp;&emsp;&ensp;前面一串英文是什么？这不重要，我门只需关注中间的一段数字即可，这个文档的数字是20181101144002，表示的是这是2018年11月01日14时40分02秒生成的记录数据文件，文件中包含了大约三分钟的记录数据。我们再将这个文档打开，哇，又是一堆数据，我们截取部分<center><img src="/2018/11/14/F107-Calculate/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-15%20%E4%B8%8A%E5%8D%8812.01.51.png" width="500" hegiht="500"></center>&emsp;&emsp;&ensp;好了，这些数据具体是什么意思呢？我也没关注一共有多少行，反正就是3分钟左右的数据量就是了，显而易见，第一列数据表示的年月日，第二列表示的时分秒，第三列我也不晓得是啥，反正不重要😂，4、5、6列就是我们记录的数据，分别是在2801MHz±5MHz, 4554MHz±5MHz以及9081MHz±5MHz的采集数据，根据之前F107指数的介绍，我们这里只需关注第4列数据，至于最后一列数据，既然用不到，管它干啥🙃。那么，这么多的记录数据，哪些是太阳数据$ R_S $，哪些是噪声源数据$ R_N $，又是哪些是冷空数据$ R_B $呢？咨询过老师得知，每天的9：00：00-9：02：59，12：00：00-12：02：59，15：00：00-15：02：59的所有数据是噪声源数据$ R_N $，9：03：00-9：05：59，12：03：00-12：05：59，15：03：00-15：05：59的所有数据是冷空$ R_B $，其余的所有数据是太阳数据$ R_S $，这下思路就很明了了，只需提取出当天的$ R_S $、$ R_N $和$ R_B $，那么什么问题都不在话下🤓。</p><h2 id="思路及实现"><a href="#思路及实现" class="headerlink" title="思路及实现"></a><font face="楷体">思路及实现</font></h2><p>&emsp;&emsp;&ensp;先给出我的<a href="https://github.com/Huntersxsx/F107test.git" target="_blank" rel="noopener">代码</a>，很简单，都是基础的Python，稍微难懂的都加了注释，所以这里就只提个思路就好。由于笔者刚接触Python没多久，所以很多地方都没有优化，写的不好请见谅😉。哦哦，至于老师发给我的那些观测数据，因为老师说那是机密文件🤔，所以我就不上传了吧😂。</p><h4 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h4><p>&emsp;&emsp;&ensp;首先，我们要将这些堆杂在一起的文档按日期进行整合，即把属于一天的所有数据合并到一个文件中，形成这样的一种形式<center><img src="/2018/11/14/F107-Calculate/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-15%20%E4%B8%8A%E5%8D%8812.35.32.png" width="500" hegiht="500"></center>&emsp;&emsp;&ensp;实现起来很简单，我代码中的CombFile( )函数就实现了该功能，后来，老师给我说当时给我的文件是特殊情况🌚，以后需要处理的数据如下面这种样式，即已经按日期分类好，但没有进行整合<center><img src="/2018/11/14/F107-Calculate/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-15%20%E4%B8%8A%E5%8D%8812.40.24.png" width="400" hegiht="400"></center>&emsp;&emsp;&ensp;没事，那样更简单，我的CombFile02( )就实现了整合的功能。整合得到当天的testdata之后，那么一切都变得简单了，函数GetR( )将数据进行划分，得到当天所有的$ R_S $、$R_N$和$ R_B $数据，函数calS0( )再根据$ S $和$ S_0 $之间的公式关系，以及官网查得的数据$ S $，即可计算得出当天的$ S_0 $，计算出多天的$S_0$，我们这里就简单地去个平均，作为我们的最佳修正系数，之后，再用函数PredictS( )，也就是calS0( )的逆过程，把最佳修正系数作为当天的$ S_0 $，就可以预测出当天的$ S $，可以和官网公布的数据进行比较，看看误差，当然，由于训练样本太小，仅仅采用取平均的方法，误差肯定有些偏大🌚，没事……笔者不在乎，重在体验😂。<br>&emsp;&emsp;&ensp;哇，到这里数据处理部分就这么结束了？可见这个项目是有多简单🌝，我还在这里兴致勃勃地长篇大论……好了，下面就剩下用户界面和生成一个可执行文件了。</p><h4 id="用户界面"><a href="#用户界面" class="headerlink" title="用户界面"></a>用户界面</h4><p>&emsp;&emsp;&ensp;这里主要用的Python自带的tkinter库，在制图方面很有用，有兴趣的朋友可以自己学习一个。我们这里用到的就很简单了，一个Button产生按钮，filedialog用作显示对话框，提示用户打开文件夹，最后再用messagebox来显示计算结果就OK了。我们运行一下看看是什么样子<center><img src="/2018/11/14/F107-Calculate/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-15%20%E4%B8%8A%E5%8D%8810.13.37.png" width="300" hegiht="300"></center>&emsp;&emsp;&ensp;可以看到出现了一个对话框，然后我们点击对话框中的按钮，就可以进行选择文件夹了<center><img src="/2018/11/14/F107-Calculate/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-15%20%E4%B8%8A%E5%8D%8810.11.44.png" width="300" hegiht="300"></center>&emsp;&emsp;&ensp;随意选取一个文件夹，就可以计算出结果啦！<center><img src="/2018/11/14/F107-Calculate/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-15%20%E4%B8%8A%E5%8D%8810.11.58.png" width="300" hegiht="300"></center>&emsp;&emsp;&ensp;结果是多少不重要，反正是实现了任务要求了🤓。好了一个简单的项目到此就基本结束了，下面就来生成一个可执行的文件，可以用于其他没有安装Python及相关库的上位机中。</p><h4 id="生成可执行文件"><a href="#生成可执行文件" class="headerlink" title="生成可执行文件"></a>生成可执行文件</h4><h6 id="Mac-OS系统"><a href="#Mac-OS系统" class="headerlink" title="Mac OS系统"></a>Mac OS系统</h6><p>&emsp;&emsp;&ensp;这一块我是实在不想写的……捣鼓了那么久最后也没捣鼓出来，主要用到的是py2app，看了很多博客、论坛，都是大同小异，可以根据<a href="https://jingyan.baidu.com/article/f79b7cb31a9f0d9144023ea8.html" target="_blank" rel="noopener">这篇</a>操作一波，当然里面是没有涉及到遇到的各种bug的，如果你能一帆风顺地完成，emmm那么就很简单了😂。期间我遇到了各种奇葩的bug，不知道是环境还是啥问题，找了小伙伴来也没能解决，最后自己一顿骚操作，居然生成了一个APP，把我激动地半天，我还给这个APP加了一个图标，附加了其他相关信息<center><img src="/2018/11/14/F107-Calculate/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-15%20%E4%B8%8A%E5%8D%8810.47.54.png" width="80" hegiht="80"></center><br>&emsp;&emsp;&ensp;最后发现这玩意只能在我的Mac上运行，在其他的Mac上就GG了🌚，不管了，放弃了，我就是这么懒🙃。<br>&emsp;&emsp;&ensp;有兴趣的小伙伴可以跟着教程操作一波，简书里的<a href="https://www.jianshu.com/p/afb6b2b97ce9" target="_blank" rel="noopener">这篇文章</a>写的就很详细了，介绍了如何添加图标，加入版本，版权等信息。另外推荐一个<a href="https://www.iconfinder.com/icon-sets/featured/free/1" target="_blank" rel="noopener">网站</a>，里面有很多有趣的图标可供选择。</p><h6 id="Windows系统"><a href="#Windows系统" class="headerlink" title="Windows系统"></a>Windows系统</h6><p>&emsp;&emsp;&ensp;在Mac OS系统下倒腾失败后，我又开始倒腾Windows……查阅相关介绍后，发现在Windows下有两种生成方式，一个就是和py2app很像的py2exe了……网上介绍很简单，但是有心理阴影的我又没搞出来🙃，后来发现py2exe已经十多年没更新了……出各种bug可能也是难免的吧。所以当然就要推荐第二种方法了——<a href="https://blog.csdn.net/mrlevo520/article/details/51840217" target="_blank" rel="noopener">pyinstalller</a>，真的是简单又方便，同样，这里也包含了很多命令可以添加图标之类的各种信息。当然，要想把图标做的更完美，还是需要修改一些文件内容的，可以综合参考一下<a href="https://blog.csdn.net/lion_cui/article/details/51329497" target="_blank" rel="noopener">这篇文章</a>和<a href="https://www.cnblogs.com/d0main/p/7444837.html" target="_blank" rel="noopener">这一篇</a>，最终，我终于生成了一个exe<br><img src="/2018/11/14/F107-Calculate/%E6%96%87%E4%BB%B6%E5%A4%B9%E5%9B%BE%E6%A0%87.jpg" width="80" hegiht="80"><img src="/2018/11/14/F107-Calculate/%E8%BF%90%E8%A1%8C%E6%88%AA%E5%9B%BE.jpg" width="200" hegiht="200"><img src="/2018/11/14/F107-Calculate/%E4%BB%BB%E5%8A%A1%E6%A0%8F%E5%9B%BE%E6%A0%87.jpg" width="80" hegiht="80"><br>&emsp;&emsp;&ensp;第一张图是文件存放在桌面或者文件夹中的显示图标。第二张图是运行之后的对话窗口，同样具有按钮，细心的小伙伴还会发现在对话窗口的左上角还有一个小太阳，没错，这就是完善图标后的效果，对应的就是第三张图在任务栏中显示的图标，同样也是一个小太阳。于是在Windows下的可执行文件就生成啦。<br>&emsp;&emsp;&ensp;在其他上位机测试过也可以执行，终于完事了……天呐，我实在太菜了，捣鼓了这么久才弄出来🌚，没事，重在折腾……</p><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a><font face="楷体">后记</font></h2><p>&emsp;&emsp;&ensp;把可执行文件发给老师之后也就算完成任务了，闲下来的我花了点时间学了点GitHUb，又搭了一个HEXO博客，然后写下了这篇废话连篇的博客。这篇博客断断续续竟然写了两天，真的敬佩那些坚持每周一更的大牛们，而且还是高质量的文章，自己也不晓得能不能坚持……emmm，继续努力吧😂，未来的路还很长，道阻且长，行则将至，共勉。</p>]]></content>
+      
+      
       <categories>
-        <category>Hexo</category>
+          
+          <category> Hexo </category>
+          
       </categories>
-      <tags>
-        <tag>Knowledge</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[FirstBlog]]></title>
-    <url>%2F2018%2F11%2F13%2FFirstBlog%2F</url>
-    <content type="text"><![CDATA[&emsp;哈哈哈，终于把HEXO搭建好啦！！！👏👏👏&emsp;这两天学习了一下Markdown，GitHub的基本操作，并搭建好了HEXO，过会再学习一下HEXO的使用。😉&emsp;几天主要跟着从0开始学习GitHub系列学习的是这篇文章，作者张帅写的很好呐，受益匪浅，作为一个即将毕业的大四🐶，感觉真的是相见恨晚呐。文章写的这么好，想必人一定很帅吧（手动狗头）哈哈哈。&emsp;先说这么多，明早还要早起上一周里唯一的一节课，哈哈，身为大四🐶唯一早起的理由了。]]></content>
+      
+      
+        <tags>
+            
+            <tag> Knowledge </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>FirstBlog</title>
+      <link href="/2018/11/13/FirstBlog/"/>
+      <url>/2018/11/13/FirstBlog/</url>
+      
+        <content type="html"><![CDATA[<p>&emsp;哈哈哈，终于把HEXO搭建好啦！！！👏👏👏<br>&emsp;这两天学习了一下Markdown，GitHub的基本操作，并搭建好了HEXO，过会再学习一下HEXO的使用。😉<br>&emsp;几天主要跟着<a href="https://blog.csdn.net/googdev/article/details/54619274?locationNum=2&amp;fps=1" target="_blank" rel="noopener">从0开始学习GitHub系列</a>学习的是这篇文章，作者<a href="http://stormzhang.com" target="_blank" rel="noopener">张帅</a>写的很好呐，受益匪浅，作为一个即将毕业的大四🐶，感觉真的是相见恨晚呐。文章写的这么好，想必人一定很帅吧（手动狗头）哈哈哈。<br>&emsp;先说这么多，明早还要早起上一周里唯一的一节课，哈哈，身为大四🐶唯一早起的理由了。</p>]]></content>
+      
+      
       <categories>
-        <category>Hexo</category>
+          
+          <category> Hexo </category>
+          
       </categories>
-      <tags>
-        <tag>Chat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2018%2F11%2F13%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+      
+      
+        <tags>
+            
+            <tag> Chat </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2018/11/13/hello-world/"/>
+      <url>/2018/11/13/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+      
+      
       <categories>
-        <category>Hexo</category>
+          
+          <category> Hexo </category>
+          
       </categories>
-      <tags>
-        <tag>Chat</tag>
-      </tags>
-  </entry>
+      
+      
+        <tags>
+            
+            <tag> Chat </tag>
+            
+        </tags>
+      
+    </entry>
+    
+  
+  
 </search>
