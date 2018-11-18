@@ -106,17 +106,17 @@
 <meta name="keywords" content="Knowledge">
 <meta property="og:type" content="article">
 <meta property="og:title" content="bias-variance">
-<meta property="og:url" content="http://yoursite.com/2018/11/14/bias-variance/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/11/18/bias-variance/index.html">
 <meta property="og:site_name" content="Huntersx">
 <meta property="og:description" content="前言&amp;emsp;&amp;emsp;&amp;ensp;昨天看书看到了“偏差和方差”这个字眼，想了一会心中没有得出确切的答案，明明前一阵子才在西瓜书中看过相关概念，现在知识点已经模糊，不仅感叹重温的必要性🌚，于是又把书翻出来重看了一遍，并决定把这块知识点写成博客，加强自己的理解和记忆。在写博客的过程中，我又上网查阅了相关的知识点，看了别人的博客，收获了和书中不一样的解释方式，结合图形更易理解，所以啊，写博客还是">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2018/11/14/bias-variance/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-18%20%E4%B8%8A%E5%8D%8810.25.32.png">
-<meta property="og:image" content="http://yoursite.com/2018/11/14/bias-variance/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-18%20%E4%B8%8A%E5%8D%8810.25.13.png">
-<meta property="og:updated_time" content="2018-11-18T09:03:27.662Z">
+<meta property="og:image" content="http://yoursite.com/2018/11/18/bias-variance/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-18%20%E4%B8%8A%E5%8D%8810.25.32.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/18/bias-variance/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-18%20%E4%B8%8A%E5%8D%8810.25.13.png">
+<meta property="og:updated_time" content="2018-11-18T09:33:18.306Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="bias-variance">
 <meta name="twitter:description" content="前言&amp;emsp;&amp;emsp;&amp;ensp;昨天看书看到了“偏差和方差”这个字眼，想了一会心中没有得出确切的答案，明明前一阵子才在西瓜书中看过相关概念，现在知识点已经模糊，不仅感叹重温的必要性🌚，于是又把书翻出来重看了一遍，并决定把这块知识点写成博客，加强自己的理解和记忆。在写博客的过程中，我又上网查阅了相关的知识点，看了别人的博客，收获了和书中不一样的解释方式，结合图形更易理解，所以啊，写博客还是">
-<meta name="twitter:image" content="http://yoursite.com/2018/11/14/bias-variance/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-18%20%E4%B8%8A%E5%8D%8810.25.32.png">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/18/bias-variance/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-18%20%E4%B8%8A%E5%8D%8810.25.32.png">
 
 
 
@@ -146,7 +146,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/14/bias-variance/">
+  <link rel="canonical" href="http://yoursite.com/2018/11/18/bias-variance/">
 
 
 
@@ -321,7 +321,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/14/bias-variance/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/18/bias-variance/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Sun Xin">
@@ -350,8 +350,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-14T09:21:45+08:00">
-                2018-11-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-18T10:21:45+08:00">
+                2018-11-18
               </time>
             
 
@@ -391,8 +391,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/11/14/bias-variance/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/11/14/bias-variance/" itemprop="commentsCount"></span>
+                <a href="/2018/11/18/bias-variance/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/11/18/bias-variance/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -400,7 +400,7 @@
 
           
           
-             <span id="/2018/11/14/bias-variance/" class="leancloud_visitors" data-flag-title="bias-variance">
+             <span id="/2018/11/18/bias-variance/" class="leancloud_visitors" data-flag-title="bias-variance">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -518,16 +518,21 @@
 </tbody>
 </table>
 </div>
-<p>其中，学习算法的期望预测为<script type="math/tex">\hat{f}(\boldsymbol x) = E_D[f(\boldsymbol x;D)]</script><br>算法的期望泛化误差为<script type="math/tex">E(f;D) = E_D[(f(\boldsymbol x;D)-y_D)^2]</script><br>假定噪声期望为零，即<script type="math/tex">E_D[y_D-y] = 0</script><br>对泛化误差进行分解，最终可以得到<script type="math/tex">E(f;D) = E_D[(f(\boldsymbol x;D)-\hat{f}(\boldsymbol x))^2]+(\hat{f}(\boldsymbol x)-y)^2+E_D[(y_D-y)^2]</script><br>于是，<script type="math/tex">E(f;D) = bias^2(\boldsymbol x)+var(\boldsymbol x)+\epsilon^2</script><br>也就是说，泛化误差可以分解为偏差、方差与噪声之和。</p>
+<p>其中，学习算法的期望预测为</p>
+<script type="math/tex; mode=display">\hat{f}(\boldsymbol x) = E_D[f(\boldsymbol x;D)]</script><p>算法的期望泛化误差为</p>
+<script type="math/tex; mode=display">E(f;D) = E_D[(f(\boldsymbol x;D)-y_D)^2]</script><p>假定噪声期望为零，即</p>
+<script type="math/tex; mode=display">E_D[y_D-y] = 0</script><p>对泛化误差进行分解，最终可以得到</p>
+<script type="math/tex; mode=display">E(f;D) = E_D[(f(\boldsymbol x;D)-\hat{f}(\boldsymbol x))^2]+(\hat{f}(\boldsymbol x)-y)^2+E_D[(y_D-y)^2]</script><p>于是，</p>
+<script type="math/tex; mode=display">E(f;D) = bias^2(\boldsymbol x)+var(\boldsymbol x)+\epsilon^2</script><p>也就是说，泛化误差可以分解为偏差、方差与噪声之和。</p>
 <p>再来看偏差、方差、噪声它们各自的含义：</p>
 <ul>
-<li>偏差:<script type="math/tex">bias^2(\boldsymbol x)=(\hat{f}(\boldsymbol x)-y)^2</script><br>度量了学习算法的期望预测与真实结果的偏离程度，刻画了学习算法本身的<font color="red">拟合能力</font>。</li>
+<li>偏差：<script type="math/tex">bias^2(\boldsymbol x)=(\hat{f}(\boldsymbol x)-y)^2</script><br>度量了学习算法的期望预测与真实结果的偏离程度，刻画了学习算法本身的<font color="red">拟合能力</font>。</li>
 <li>方差 ：<script type="math/tex">var(\boldsymbol x)=E_D[(f(\boldsymbol x;D)-\hat{f}(\boldsymbol x))^2]</script><br>度量了同样大小的训练集的变动所导致的学习性能的变化，刻画了<font color="red">数据扰动所造成的影响</font>。</li>
 <li>噪声：<script type="math/tex">\epsilon^2=E_D[(y_D-y)^2]</script><br>表达了在当前任务上任何学习算法所能达到的期望泛化误差的下界，刻画了学习问题<font color="red">本身的难度</font>。<br>&emsp;&emsp;&ensp;综上，泛化性能是由学习算法的能力、数据的充分性以及学习任务本身的难度所共同决定的，为了取得好的泛化性能，需要使偏差较小，能够充分拟合数据，也要使方差较小，使得数据扰动产生的影响小。</li>
 </ul>
 <hr>
-<p>&emsp;&emsp;&ensp;以上是我在书中获得的解释，后来我又在某些<a href="http://scott.fortmann-roe.com/docs/BiasVariance.html" target="_blank" rel="noopener">博客</a>中看到了更加直观的图形解释。<br><img src="/2018/11/14/bias-variance/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-18%20%E4%B8%8A%E5%8D%8810.25.32.png" alt="屏幕快照 2018-11-18 上午10.25.32"><br>&emsp;&emsp;&ensp;如图，我们可以使用靶心图创建偏差和方差的图形可视化。目标的中心是一个完美预测正确值的模型，随着我们远离靶心，我们的预测变得越来越糟，我们可以重复整个模型构建过程，以便在目标上获得许多单独的命中。有时我们会得到很好的训练数据分布，所以我们预测得很好，且接近靶心，而有时我们的训练数据可能充满了异常值或非标准值，导致预测较差，这些不同的实现导致目标上的命中分散。</p>
-<h2 id="偏差-方差窘境"><a href="#偏差-方差窘境" class="headerlink" title="偏差-方差窘境"></a><font face="楷体">偏差-方差窘境</font></h2><p>&emsp;&emsp;&ensp;一般，偏差和方差是有冲突的，称为偏差-方差窘境（bias-variance dilemma）在训练不足时，学习器的拟合能力不够强，训练数据的扰动不足以使学习器产生显著变化，此时偏差主导了泛化错误率。随着训练程度的加深，学习器的拟合能力逐渐增强，训练数据发生的扰动渐渐能被学习器学到，方差逐渐主导了泛化错误率。训练程度充足后，学习器的拟合能力已非常强，训练数据发生的轻微扰动都会导致学习器发生显著的变化，若训练数据自身的、非全局的特性被学习器学到了，则将发生过拟合。下面的这张图正好说明了这点<br><img src="/2018/11/14/bias-variance/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-18%20%E4%B8%8A%E5%8D%8810.25.13.png" alt="屏幕快照 2018-11-18 上午10.25.13"><br>&emsp;&emsp;&ensp;其实，处理偏差和方差实际上是关于处理过度拟合和欠拟合。随着越来越多的参数被添加到模型中，模型的复杂性上升，变化成为我们首要关注的问题，所以方差变大，而偏差则逐渐下降。<br>&emsp;&emsp;&ensp;正如上一节的那张图所示，欠拟合实际上对应的是高偏差，而过拟合对应的又是高方差。而我们的目的是要寻找使得泛化误差取得最小值的那个最佳点，这就需要让偏差和方差在一定程度上折中取值。</p>
+<p>&emsp;&emsp;&ensp;以上是我在书中获得的解释，后来我又在某些<a href="http://scott.fortmann-roe.com/docs/BiasVariance.html" target="_blank" rel="noopener">博客</a>中看到了更加直观的图形解释。<br><img src="/2018/11/18/bias-variance/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-18%20%E4%B8%8A%E5%8D%8810.25.32.png" alt="屏幕快照 2018-11-18 上午10.25.32"><br>&emsp;&emsp;&ensp;如图，我们可以使用靶心图创建偏差和方差的图形可视化。目标的中心是一个完美预测正确值的模型，随着我们远离靶心，我们的预测变得越来越糟，我们可以重复整个模型构建过程，以便在目标上获得许多单独的命中。有时我们会得到很好的训练数据分布，所以我们预测得很好，且接近靶心，而有时我们的训练数据可能充满了异常值或非标准值，导致预测较差，这些不同的实现导致目标上的命中分散。</p>
+<h2 id="偏差-方差窘境"><a href="#偏差-方差窘境" class="headerlink" title="偏差-方差窘境"></a><font face="楷体">偏差-方差窘境</font></h2><p>&emsp;&emsp;&ensp;一般，偏差和方差是有冲突的，称为偏差-方差窘境（bias-variance dilemma）在训练不足时，学习器的拟合能力不够强，训练数据的扰动不足以使学习器产生显著变化，此时偏差主导了泛化错误率。随着训练程度的加深，学习器的拟合能力逐渐增强，训练数据发生的扰动渐渐能被学习器学到，方差逐渐主导了泛化错误率。训练程度充足后，学习器的拟合能力已非常强，训练数据发生的轻微扰动都会导致学习器发生显著的变化，若训练数据自身的、非全局的特性被学习器学到了，则将发生过拟合。下面的这张图正好说明了这点<br><img src="/2018/11/18/bias-variance/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-11-18%20%E4%B8%8A%E5%8D%8810.25.13.png" alt="屏幕快照 2018-11-18 上午10.25.13"><br>&emsp;&emsp;&ensp;其实，处理偏差和方差实际上是关于处理过度拟合和欠拟合。随着越来越多的参数被添加到模型中，模型的复杂性上升，变化成为我们首要关注的问题，所以方差变大，而偏差则逐渐下降。<br>&emsp;&emsp;&ensp;正如上一节的那张图所示，欠拟合实际上对应的是高偏差，而过拟合对应的又是高方差。而我们的目的是要寻找使得泛化误差取得最小值的那个最佳点，这就需要让偏差和方差在一定程度上折中取值。</p>
 <h2 id="偏差-方差折中"><a href="#偏差-方差折中" class="headerlink" title="偏差-方差折中"></a><font face="楷体">偏差-方差折中</font></h2><p>&emsp;&emsp;&ensp;很多算法都是可以控制训练程度的，比如决策树可以控制层数，神经网络可以控制训练轮数，集成学习的方法可控制基学习器的个数。<br>&emsp;&emsp;&ensp;我看到偏差-方差折中这一概念是在《机器学习实战》这本书中遇到的，那一章节主要讲了回归。书中提到，线性回归容易发生欠拟合，因为它求的是具有最小均方误差的无偏估计，而我们可以在估计中引入一些偏差用来降低预测的均方误差，有一个方法就是<font color="red">局部加权线性回归</font>。这里不作介绍，感兴趣的小伙伴可以阅读《机器学习实战》的8.2节，得出的结论是选取的核越小，模型复杂度就越高，可以增大方差减小偏差。而当模型十分复杂以至于发生了过拟合时，可以采用缩减法，将一些系数进行缩减，可以减少模型的复杂度，降低方差。书中8.3节和8.4节主要介绍了<font color="red">岭回归、lasso法和前向逐步回归法</font>这些缩减方法，并且结合实例进行了分析，感兴趣的小伙伴可以详细阅读。</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a><font face="楷体">后记</font></h2><p>&emsp;&emsp;&ensp;花了点时间，总算对偏差和方差的概念又加深了一遍印象，以后还是要注意温故而知新呐🌝。</p>
 
@@ -572,8 +577,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/14/F107-Calculate/" rel="next" title="F107 Calculate">
-                <i class="fa fa-chevron-left"></i> F107 Calculate
+              <a href="/2018/11/16/Decorate-my-Blog/" rel="next" title="Decorate my Blog">
+                <i class="fa fa-chevron-left"></i> Decorate my Blog
               </a>
             
           </div>
@@ -581,10 +586,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/16/Decorate-my-Blog/" rel="prev" title="Decorate my Blog">
-                Decorate my Blog <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -1033,7 +1034,7 @@
       function renderGitment(){
         var gitment = new Gitmint({
             <!-- id: window.location.pathname,   -->
-            id: '1542158505000',
+            id: '1542507705000',
             owner: 'Huntersxsx',
             repo: 'Huntersxsx.github.io',
             
