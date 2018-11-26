@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="128x128" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Knowledge,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言&amp;emsp;&amp;emsp;&amp;ensp;趁热打铁又做了2019年的网易校招题，结果发现要比2018年的简单不少，题量也从12道降低到7道，而且没有一道动态规划，所以做的比较快，但也还是收获了一些。 2019网易校招题NO.1题目&amp;emsp;&amp;emsp;&amp;ensp;小易有一个古老的游戏机，上面有着经典的游戏俄罗斯方块。因为它比较古老，所以规则和一般的俄罗斯方块不同。荧幕上一共有 n 列，每次都会有一">
+<meta name="keywords" content="Knowledge">
+<meta property="og:type" content="article">
+<meta property="og:title" content="some easy algorithm03">
+<meta property="og:url" content="http://yoursite.com/2018/11/25/some-easy-algorithm03/index.html">
+<meta property="og:site_name" content="Huntersx">
+<meta property="og:description" content="前言&amp;emsp;&amp;emsp;&amp;ensp;趁热打铁又做了2019年的网易校招题，结果发现要比2018年的简单不少，题量也从12道降低到7道，而且没有一道动态规划，所以做的比较快，但也还是收获了一些。 2019网易校招题NO.1题目&amp;emsp;&amp;emsp;&amp;ensp;小易有一个古老的游戏机，上面有着经典的游戏俄罗斯方块。因为它比较古老，所以规则和一般的俄罗斯方块不同。荧幕上一共有 n 列，每次都会有一">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2018/11/25/some-easy-algorithm03/NO.1.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/25/some-easy-algorithm03/NO.2.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/25/some-easy-algorithm03/NO.3.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/25/some-easy-algorithm03/NO.4.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/25/some-easy-algorithm03/NO.5.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/25/some-easy-algorithm03/NO.601.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/25/some-easy-algorithm03/NO.602.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/25/some-easy-algorithm03/NO.603.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/25/some-easy-algorithm03/NO.7.png">
+<meta property="og:updated_time" content="2018-11-26T05:35:20.098Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="some easy algorithm03">
+<meta name="twitter:description" content="前言&amp;emsp;&amp;emsp;&amp;ensp;趁热打铁又做了2019年的网易校招题，结果发现要比2018年的简单不少，题量也从12道降低到7道，而且没有一道动态规划，所以做的比较快，但也还是收获了一些。 2019网易校招题NO.1题目&amp;emsp;&amp;emsp;&amp;ensp;小易有一个古老的游戏机，上面有着经典的游戏俄罗斯方块。因为它比较古老，所以规则和一般的俄罗斯方块不同。荧幕上一共有 n 列，每次都会有一">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/25/some-easy-algorithm03/NO.1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/25/some-easy-algorithm03/">
+
+
+
+
+
+  <title>some easy algorithm03 | Huntersx</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Huntersx</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/25/some-easy-algorithm03/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sun Xin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Huntersx">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">some easy algorithm03</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-25T20:41:11+08:00">
+                2018-11-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/11/25/some-easy-algorithm03/" class="leancloud_visitors" data-flag-title="some easy algorithm03">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                 <span>℃</span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  3.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  14
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><font face="楷体">前言</font></h2><p>&emsp;&emsp;&ensp;趁热打铁又做了2019年的网易校招题，结果发现要比2018年的简单不少，题量也从12道降低到7道，而且没有一道动态规划，所以做的比较快，但也还是收获了一些。</p>
+<h2 id="2019网易校招题"><a href="#2019网易校招题" class="headerlink" title="2019网易校招题"></a><font face="楷体">2019网易校招题</font></h2><h4 id="NO-1"><a href="#NO-1" class="headerlink" title="NO.1"></a><strong>NO.1</strong></h4><h5 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h5><p>&emsp;&emsp;&ensp;小易有一个古老的游戏机，上面有着经典的游戏俄罗斯方块。因为它比较古老，所以规则和一般的俄罗斯方块不同。荧幕上一共有 n 列，每次都会有一个 1 x 1 的方块随机落下，在同一列中，后落下的方块会叠在先前的方块之上，当一整行方块都被占满时，这一行会被消去，并得到1分。<br>&emsp;&emsp;&ensp;有一天，小易又开了一局游戏，当玩到第 m 个方块落下时他觉得太无聊就关掉了，小易希望你告诉他这局游戏他获得的分数。</p>
+<h5 id="样例："><a href="#样例：" class="headerlink" title="样例："></a>样例：</h5><p>输入描述:<br>第一行两个数 n, m<br>第二行 m 个数，c1, c2, … , cm ， ci 表示第 i 个方块落在第几列<br>其中 1 &lt;= n, m &lt;= 1000, 1 &lt;= ci &lt;= n<br>输出描述:<br>小易这局游戏获得的分数<br>输入例子1:<br>3 9<br>1 1 2 2 2 3 1 2 3<br>输出例子1:<br>2</p>
+<h5 id="源程序"><a href="#源程序" class="headerlink" title="源程序"></a>源程序</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#找出所有列中最低的那个即可</span></span><br><span class="line">print(<span class="string">"请输入屏幕的列数n和下落的方块数m:"</span>)</span><br><span class="line">[n,m] = [int(x) <span class="keyword">for</span> x <span class="keyword">in</span> input().strip().split(<span class="string">" "</span>)]</span><br><span class="line">print(<span class="string">"请输入这m个方块下落的列序号:"</span>)</span><br><span class="line">L = [int(x) <span class="keyword">for</span> x <span class="keyword">in</span> input().strip().split(<span class="string">" "</span>)]</span><br><span class="line">num_count = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,n+<span class="number">1</span>):</span><br><span class="line">    num_count.append(L.count(i))</span><br><span class="line">print(<span class="string">"得分为:"</span>,min(num_count))</span><br></pre></td></tr></table></figure>
+<h5 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h5><p><img src="/2018/11/25/some-easy-algorithm03/NO.1.png" width="250" hegiht="120"></p>
+<h4 id="NO-2"><a href="#NO-2" class="headerlink" title="NO.2"></a><strong>NO.2</strong></h4><h5 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h5><p>&emsp;&emsp;&ensp;小易觉得高数课太无聊了，决定睡觉。不过他对课上的一些内容挺感兴趣，所以希望你在老师讲到有趣的部分的时候叫醒他一下。<br>&emsp;&emsp;&ensp;你知道了小易对一堂课每分钟知识点的感兴趣程度，并以分数量化，以及他在这堂课上每分钟是否会睡着，你可以叫醒他一次，这会使得他在接下来的k分钟内保持清醒。<br>&emsp;&emsp;&ensp;你需要选择一种方案最大化小易这堂课听到的知识点分值。</p>
+<h5 id="样例：-1"><a href="#样例：-1" class="headerlink" title="样例："></a>样例：</h5><p>输入描述:<br>第一行 n, k (1 &lt;= n, k &lt;= 105) ，表示这堂课持续多少分钟，以及叫醒小易一次使他能够保持清醒的时间。<br>第二行 n 个数，a1, a2, … , an(1 &lt;= ai &lt;= 104) 表示小易对每分钟知识点的感兴趣评分。<br>第三行 n 个数，t1, t2, … , tn 表示每分钟小易是否清醒, 1表示清醒。<br>输出描述:<br>小易这堂课听到的知识点的最大兴趣值。<br>输入例子1:<br>6 3<br>1 3 5 2 5 4<br>1 1 0 1 0 0<br>输出例子1:<br>16</p>
+<h5 id="源程序-1"><a href="#源程序-1" class="headerlink" title="源程序"></a>源程序</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#思路很明确，不过好像超时了……</span></span><br><span class="line">print(<span class="string">"请输入这节课的时长n，以及保持清醒的时长k:"</span>)</span><br><span class="line">[n,k] = [int(x) <span class="keyword">for</span> x <span class="keyword">in</span> input().strip().split(<span class="string">" "</span>)]</span><br><span class="line">print(<span class="string">"请输入对每分钟知识点的感兴趣评分:"</span>)</span><br><span class="line">interest = [int(x) <span class="keyword">for</span> x <span class="keyword">in</span> input().strip().split(<span class="string">" "</span>)]</span><br><span class="line">print(<span class="string">"请输入每分钟是否会清醒:"</span>)</span><br><span class="line">is_wakeup = [int(x) <span class="keyword">for</span> x <span class="keyword">in</span> input().strip().split(<span class="string">" "</span>)]</span><br><span class="line">result = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n-k+<span class="number">1</span>):</span><br><span class="line">    temp = is_wakeup.copy()</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(i,i + k):</span><br><span class="line">        temp[j] = <span class="number">1</span></span><br><span class="line">    L = [interest[x] * temp[x] <span class="keyword">for</span> x <span class="keyword">in</span> range(n)]</span><br><span class="line">    result.append(sum(L))</span><br><span class="line">print(<span class="string">"这节课获得的最大知识点数值为:"</span>,max(result))</span><br></pre></td></tr></table></figure>
+<h5 id="运行结果-1"><a href="#运行结果-1" class="headerlink" title="运行结果"></a>运行结果</h5><p><img src="/2018/11/25/some-easy-algorithm03/NO.2.png" width="300" hegiht="120"></p>
+<h4 id="NO-3"><a href="#NO-3" class="headerlink" title="NO.3"></a><strong>NO.3</strong></h4><h5 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h5><p>&emsp;&emsp;&ensp;又到了丰收的季节，恰逢小易去牛牛的果园里游玩。牛牛常说他对整个果园的每个地方都了如指掌，小易不太相信，所以他想考考牛牛。<br>&emsp;&emsp;&ensp;在果园里有N堆苹果，每堆苹果的数量为ai，小易希望知道从左往右数第x个苹果是属于哪一堆的。<br>牛牛觉得这个问题太简单，所以希望你来替他回答。</p>
+<h5 id="样例：-2"><a href="#样例：-2" class="headerlink" title="样例："></a>样例：</h5><p>输入描述:<br>第一行一个数n(1 &lt;= n &lt;= 105)。<br>第二行n个数ai(1 &lt;= ai &lt;= 1000)，表示从左往右数第i堆有多少苹果。<br>第三行一个数m(1 &lt;= m &lt;= 105)，表示有m次询问。<br>第四行m个数qi，表示小易希望知道第qi个苹果属于哪一堆。<br>输出描述:<br>m行，第i行输出第qi个苹果属于哪一堆。<br>输入例子:<br>5<br>2 7 3 4 9<br>3<br>1 25 11<br>输出例子:<br>1<br>5<br>3</p>
+<h5 id="源程序-2"><a href="#源程序-2" class="headerlink" title="源程序"></a>源程序</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#也很简单，不过这种直接遍历比较的方法有超时了……</span></span><br><span class="line">n = int(input(<span class="string">"请输入苹果的堆数:"</span>))</span><br><span class="line">print(<span class="string">"请输从左往右入每一堆的苹果数目:"</span>)</span><br><span class="line">A = [int(x) <span class="keyword">for</span> x <span class="keyword">in</span> input().strip().split(<span class="string">" "</span>)]</span><br><span class="line">m = int(input(<span class="string">"请输入询问次数:"</span>))</span><br><span class="line">print(<span class="string">"请输m个查询的索引值:"</span>)</span><br><span class="line">Q = [int(x) <span class="keyword">for</span> x <span class="keyword">in</span> input().strip().split(<span class="string">" "</span>)]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,n):</span><br><span class="line">    A[i] += A[i<span class="number">-1</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(m):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(n):</span><br><span class="line">        <span class="keyword">if</span> Q[i] &lt;= A[j]:</span><br><span class="line">            print(j+<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#由于上述方法超时，又换了个看似繁琐实际时间复杂度较低的二分法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_place</span><span class="params">(data, left, right, target)</span>:</span></span><br><span class="line">    i, j = left, right</span><br><span class="line">    mid = i + (j - i) // <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> left &lt; right:</span><br><span class="line">        <span class="keyword">if</span> data[mid] &gt;= target <span class="keyword">and</span> data[mid - <span class="number">1</span>] &lt; target:</span><br><span class="line">            <span class="keyword">return</span> mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> data[mid] &gt;= target:</span><br><span class="line">            right = mid - <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> get_place(data, left, right, target)</span><br><span class="line">        <span class="keyword">elif</span> data[mid - <span class="number">1</span>] &lt; target:</span><br><span class="line">            left = mid + <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> get_place(data, left, right, target)</span><br><span class="line">    <span class="keyword">return</span> left + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">n = int(input(<span class="string">"请输入苹果的堆数:"</span>))</span><br><span class="line">print(<span class="string">"请输从左往右入每一堆的苹果数目:"</span>)</span><br><span class="line">A = [int(x) <span class="keyword">for</span> x <span class="keyword">in</span> input().strip().split(<span class="string">" "</span>)]</span><br><span class="line">m = int(input(<span class="string">"请输入询问次数:"</span>))</span><br><span class="line">print(<span class="string">"请输m个查询的索引值:"</span>)</span><br><span class="line">Q = [int(x) <span class="keyword">for</span> x <span class="keyword">in</span> input().strip().split(<span class="string">" "</span>)]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,n):</span><br><span class="line">    A[i] += A[i<span class="number">-1</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(m):</span><br><span class="line">    print(get_place(A,<span class="number">0</span>,n<span class="number">-1</span>,Q[i]))</span><br></pre></td></tr></table></figure>
+<h5 id="运行结果-2"><a href="#运行结果-2" class="headerlink" title="运行结果"></a>运行结果</h5><p><img src="/2018/11/25/some-easy-algorithm03/NO.3.png" width="240" hegiht="220"></p>
+<h4 id="NO-4"><a href="#NO-4" class="headerlink" title="NO.4"></a><strong>NO.4</strong></h4><h5 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h5><p>&emsp;&emsp;&ensp;又到了周末，小易的房间乱得一团糟。他希望将地上的杂物稍微整理下，使每团杂物看起来都紧凑一些，没有那么乱。<br>&emsp;&emsp;&ensp;地上一共有n团杂物，每团杂物都包含4个物品。第i物品的坐标用(ai,bi)表示，小易每次都可以将它绕着(xi,yi)逆时针旋转90°，这将消耗他的一次移动次数。<br>如果一团杂物的4个点构成了一个面积不为0的正方形，我们说它是紧凑的。<br>&emsp;&emsp;&ensp;因为小易很懒，所以他希望你帮助他计算一下每团杂物最少需要多少步移动能使它变得紧凑。</p>
+<h5 id="样例：-3"><a href="#样例：-3" class="headerlink" title="样例："></a>样例：</h5><p>输入描述:<br>第一行一个数n(1 &lt;= n &lt;= 100)，表示杂物的团数。<br>接下来4n行，每4行表示一团杂物，每行4个数ai, bi，xi, yi, (-10\^4 &lt;= xi, yi, ai, bi &lt;= 10\^4)，表示第i个物品旋转的它本身的坐标和中心点坐标。<br>输出描述:<br>n行，每行1个数，表示最少移动次数。<br>输入例子:<br>4<br>1 1 0 0<br>-1 1 0 0<br>-1 1 0 0<br>1 -1 0 0<br>1 1 0 0<br>-2 1 0 0<br>-1 1 0 0<br>1 -1 0 0<br>1 1 0 0<br>-1 1 0 0<br>-1 1 0 0<br>-1 1 0 0<br>2 2 0 1<br>-1 0 0 -2<br>3 0 0 -2<br>-1 1 -2 0<br>输出例子:<br>1<br>-1<br>3<br>3<br>例子说明:<br>对于第一团杂物，我们可以旋转第二个或者第三个物品1次。</p>
+<h5 id="源程序-3"><a href="#源程序-3" class="headerlink" title="源程序"></a>源程序</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">这题虽然比较烦，但是思路还是很明确的，用到一个旋转函数和一个判断正方形的函数，接着就是无脑地遍历比较了，这题时间居然没有超……</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="comment">#逆时针旋转90°</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rotate</span><span class="params">(point)</span>:</span>    </span><br><span class="line">    <span class="comment">#print(point)</span></span><br><span class="line">    x = point[<span class="number">2</span>] - (point[<span class="number">1</span>] - point[<span class="number">3</span>])</span><br><span class="line">    y = point[<span class="number">3</span>] - (point[<span class="number">2</span>] - point[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">return</span> [x, y]</span><br><span class="line"><span class="comment">#判断是否是正方形</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_square</span><span class="params">(a, b, c, d)</span>:</span></span><br><span class="line">    x = float(a[<span class="number">0</span>] + b[<span class="number">0</span>] + c[<span class="number">0</span>] + d[<span class="number">0</span>]) / <span class="number">4</span></span><br><span class="line">    y = float(a[<span class="number">1</span>] + b[<span class="number">1</span>] + c[<span class="number">1</span>] + d[<span class="number">1</span>]) / <span class="number">4</span></span><br><span class="line">    newpoint = [rotate(a+[x,y]), rotate(b+[x,y]), rotate(c+[x,y]), rotate(d+[x,y])]</span><br><span class="line">    newpoint.sort()</span><br><span class="line">    oldpoint = [a,b,c,d]</span><br><span class="line">    oldpoint.sort()</span><br><span class="line">    <span class="keyword">if</span> newpoint == oldpoint <span class="keyword">and</span> [x,y] != a:   <span class="comment">#如果四个点逆时针旋转90°还是这四个坐标，则是正方形，注意防止四点重合</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">n = int(input(<span class="string">"请输入杂物的团数:"</span>))</span><br><span class="line">result = []</span><br><span class="line">print(<span class="string">"请输入每个物品的坐标ai, bi，以及旋转中心的坐标xi, yi:"</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    data = []</span><br><span class="line">    best_t = float(<span class="string">'inf'</span>)  <span class="comment">#用来记录最少操作次数</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">        a, b, x, y = list(map(int, input().split()))</span><br><span class="line">        temp = [[a, b]]</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">3</span>):</span><br><span class="line">            temp.append(rotate(temp[<span class="number">-1</span>] + [x, y]))  <span class="comment">#记录每个点旋转1，2，3次后的坐标</span></span><br><span class="line">        data.append(temp)</span><br><span class="line">        <span class="comment">#print(data)</span></span><br><span class="line">    <span class="comment"># 遍历所有的可能性</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">                <span class="keyword">for</span> m <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">                    <span class="keyword">if</span> is_square(data[<span class="number">0</span>][i], data[<span class="number">1</span>][j], data[<span class="number">2</span>][k], data[<span class="number">3</span>][m]):</span><br><span class="line">                        best_t = min(best_t, i + j + k + m)</span><br><span class="line">    <span class="keyword">if</span> best_t == float(<span class="string">'inf'</span>):   <span class="comment">#如果怎么旋转都不能构成正方形</span></span><br><span class="line">        result.append(<span class="number">-1</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        result.append(best_t)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">    print(<span class="string">"第"</span>+str(i+<span class="number">1</span>)+<span class="string">"堆最少需要移动"</span>+str(result[i])+<span class="string">"次"</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="运行结果-3"><a href="#运行结果-3" class="headerlink" title="运行结果"></a>运行结果</h5><p><img src="/2018/11/25/some-easy-algorithm03/NO.4.png" width="400" hegiht="620"></p>
+<h4 id="NO-5"><a href="#NO-5" class="headerlink" title="NO.5"></a><strong>NO.5</strong></h4><h5 id="题目-4"><a href="#题目-4" class="headerlink" title="题目"></a>题目</h5><p>&emsp;&emsp;&ensp;今天上课，老师教了小易怎么计算加法和乘法，乘法的优先级大于加法，但是如果一个运算加了括号，那么它的优先级是最高的。例如：<br>1+2*3=7<br>1*(2+3)=5<br>1*2*3=6<br>(1+2)*3=9<br>&emsp;&emsp;&ensp;现在小易希望你帮他计算给定3个数a，b，c，在它们中间添加”+”， “*“， “(“， “)”符号，能够获得的最大值。</p>
+<h5 id="样例：-4"><a href="#样例：-4" class="headerlink" title="样例："></a>样例：</h5><p>输入描述:<br>一行三个数a，b，c。(1 &lt;= a, b, c &lt;= 10)<br>输出描述:<br>能够获得的最大值。<br>输入例子:<br>1 2 3<br>输出例子:<br>9</p>
+<h5 id="源程序-4"><a href="#源程序-4" class="headerlink" title="源程序"></a>源程序</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#这题可能是送分题……把6种情况都考虑即可</span></span><br><span class="line">print(<span class="string">"请输入3个数:"</span>)</span><br><span class="line">[a,b,c] = [int(x) <span class="keyword">for</span> x <span class="keyword">in</span> input().strip().split(<span class="string">" "</span>)]</span><br><span class="line">L = []</span><br><span class="line">L.append(a+b+c)</span><br><span class="line">L.append(a*b*c)</span><br><span class="line">L.append((a+b)*c)</span><br><span class="line">L.append(a*(b+c))</span><br><span class="line">L.append(a*b+c)</span><br><span class="line">L.append(a+b*c)</span><br><span class="line">print(<span class="string">"能获得的最大值为:"</span>,max(L))</span><br></pre></td></tr></table></figure>
+<h5 id="运行结果-4"><a href="#运行结果-4" class="headerlink" title="运行结果"></a>运行结果</h5><p><img src="/2018/11/25/some-easy-algorithm03/NO.5.png" width="170" hegiht="120"></p>
+<h4 id="NO-6"><a href="#NO-6" class="headerlink" title="NO.6"></a><strong>NO.6</strong></h4><h5 id="题目-5"><a href="#题目-5" class="headerlink" title="题目"></a>题目</h5><p>&emsp;&emsp;&ensp;小易有一些立方体，每个立方体的边长为1，他用这些立方体搭了一些塔。<br>&emsp;&emsp;&ensp;现在小易定义：这些塔的不稳定值为它们之中最高的塔与最低的塔的高度差。<br>小易想让这些塔尽量稳定，所以他进行了如下操作：每次从某座塔上取下一块立方体，并把它放到另一座塔上。注意，小易不会把立方体放到它原本的那座塔上，因为他认为这样毫无意义。<br>&emsp;&emsp;&ensp;现在小易想要知道，他进行了不超过k次操作之后，不稳定值最小是多少。</p>
+<h5 id="样例：-5"><a href="#样例：-5" class="headerlink" title="样例："></a>样例：</h5><p>输入描述:<br>第一行两个数n,k (1 &lt;= n &lt;= 100, 0 &lt;= k &lt;= 1000)表示塔的数量以及最多操作的次数。<br>第二行n个数，ai(1 &lt;= ai &lt;= 104)表示第i座塔的初始高度。<br>输出描述:<br>第一行两个数s, m，表示最小的不稳定值和操作次数。(m &lt;= k)<br>接下来m行，每行两个数x,y表示从第x座塔上取下一块立方体放到第y座塔上。<br>输入例子:<br>3 2<br>5 8 5<br>输出例子:<br>0 2<br>2 1<br>2 3</p>
+<h5 id="源程序-5"><a href="#源程序-5" class="headerlink" title="源程序"></a>源程序</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#这题的思路也比较明确，注意到停止条件当最高高度和最低高度的差小于等于1时就很容易做了。</span></span><br><span class="line">print(<span class="string">"请输入塔的数量n和最多操作次数k:"</span>)</span><br><span class="line">[n,k] = [int(x) <span class="keyword">for</span> x <span class="keyword">in</span> input().strip().split(<span class="string">" "</span>)]</span><br><span class="line">print(<span class="string">"请输入每个塔的初始高度:"</span>)</span><br><span class="line">L = [int(x) <span class="keyword">for</span> x <span class="keyword">in</span> input().strip().split(<span class="string">" "</span>)]</span><br><span class="line">result = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(k):</span><br><span class="line">    diff = max(L) - min(L)</span><br><span class="line">    <span class="keyword">if</span> diff &lt;= <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        result.append([L.index(max(L)) + <span class="number">1</span>, L.index(min(L)) + <span class="number">1</span>])</span><br><span class="line">        L[L.index(max(L))] -= <span class="number">1</span></span><br><span class="line">        L[L.index(min(L))] +=  <span class="number">1</span></span><br><span class="line">print(str(max(L) - min(L)) + <span class="string">' '</span> + str(len(result)))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(result)):</span><br><span class="line">    print(str(result[i][<span class="number">0</span>]) + <span class="string">' '</span> + str(result[i][<span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
+<h5 id="运行结果-5"><a href="#运行结果-5" class="headerlink" title="运行结果"></a>运行结果</h5><p><img src="/2018/11/25/some-easy-algorithm03/NO.601.png" width="250" hegiht="120"></p>
+<p><img src="/2018/11/25/some-easy-algorithm03/NO.602.png" width="240" hegiht="120"></p>
+<p><img src="/2018/11/25/some-easy-algorithm03/NO.603.png" width="260" hegiht="120"></p>
+<h4 id="NO-7"><a href="#NO-7" class="headerlink" title="NO.7"></a><strong>NO.7</strong></h4><h5 id="题目-6"><a href="#题目-6" class="headerlink" title="题目"></a>题目</h5><p>&emsp;&emsp;&ensp;小易在学校中学习了关于字符串的理论, 于是他基于此完成了一个字典的项目。<br>&emsp;&emsp;&ensp;小易的这个字典很奇特, 字典内的每个单词都包含n个’a’和m个’z’, 并且所有单词按照字典序排列。<br>小易现在希望你能帮他找出第k个单词是什么。</p>
+<h5 id="样例：-6"><a href="#样例：-6" class="headerlink" title="样例："></a>样例：</h5><p>输入描述:<br>输入包括一行三个整数n, m, k(1 &lt;= n, m &lt;= 100, 1 &lt;= k &lt;= 109), 以空格分割。<br>输出描述:<br>输出第k个字典中的字符串，如果无解，输出-1。<br>输入例子:<br>2 2 6<br>输出例子:<br>zzaa<br>例子说明:<br>字典中的字符串依次为aazz azaz azza zaaz zaza zzaa</p>
+<h5 id="源程序-6"><a href="#源程序-6" class="headerlink" title="源程序"></a>源程序</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#这题实际上是一个全排列问题。</span></span><br><span class="line"><span class="comment">#自己想没有头绪，主要是对全排列的基本概念不熟，然后网上一搜有很多解释，结果超时了……</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">full_permutation</span><span class="params">(position,end,arr,result=set<span class="params">()</span>)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> position == end:</span><br><span class="line">        result.add(<span class="string">""</span>.join(arr))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">for</span> idx <span class="keyword">in</span> range(position,end):</span><br><span class="line">            arr[idx], arr[position] = arr[position], arr[idx]  <span class="comment">#position位置的元素与本身以及后面的元素进行交换，以确定position位置的元素</span></span><br><span class="line">            full_permutation(position + <span class="number">1</span>, end, arr, result)   <span class="comment">#确定了position位置的元素后，再确定后面位置的元素</span></span><br><span class="line">            arr[idx], arr[position] = arr[position], arr[idx]  <span class="comment">#把数组恢复成原来的样子</span></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">    </span><br><span class="line">print(<span class="string">"请输入字母a的个数n，字母z的个数m和查询索引值k:"</span>)</span><br><span class="line">[n, m, k] = [int(x) <span class="keyword">for</span> x <span class="keyword">in</span> input().strip().split(<span class="string">" "</span>)]</span><br><span class="line">arr = [<span class="string">'a'</span>] * n + [<span class="string">'z'</span>] * m</span><br><span class="line">L = list(full_permutation(<span class="number">0</span>,len(arr),arr))</span><br><span class="line">L.sort()</span><br><span class="line">print(<span class="string">"查询的字符串为:"</span>,L[k<span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
+<h5 id="运行结果-6"><a href="#运行结果-6" class="headerlink" title="运行结果"></a>运行结果</h5><p><img src="/2018/11/25/some-easy-algorithm03/NO.7.png" width="370" hegiht="120"></p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a><font face="楷体">后记</font></h2><p>&emsp;&emsp;&ensp;几乎每道题的思路都很明确，但往往最容易想到的方法，时间复杂度要比较高，所以还需改进算法，或者采用其他更优的算法，这也应当是以后需要注意的方面。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Knowledge/" rel="tag"><i class="fa fa-tag"></i>" Knowledge</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/23/some-easy-algorithm02/" rel="next" title="some easy algorithm02">
+                <i class="fa fa-chevron-left"></i> some easy algorithm02
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="Sun Xin">
+            
+              <p class="site-author-name" itemprop="name">Sun Xin</p>
+              <p class="site-description motion-element" itemprop="description">Sun Xin's blog</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Huntersxsx" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:huntersx0706@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2019网易校招题"><span class="nav-number">2.</span> <span class="nav-text">2019网易校招题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NO-1"><span class="nav-number">2.0.1.</span> <span class="nav-text">NO.1</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目"><span class="nav-number">2.0.1.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#样例："><span class="nav-number">2.0.1.2.</span> <span class="nav-text">样例：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#源程序"><span class="nav-number">2.0.1.3.</span> <span class="nav-text">源程序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#运行结果"><span class="nav-number">2.0.1.4.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NO-2"><span class="nav-number">2.0.2.</span> <span class="nav-text">NO.2</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目-1"><span class="nav-number">2.0.2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#样例：-1"><span class="nav-number">2.0.2.2.</span> <span class="nav-text">样例：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#源程序-1"><span class="nav-number">2.0.2.3.</span> <span class="nav-text">源程序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#运行结果-1"><span class="nav-number">2.0.2.4.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NO-3"><span class="nav-number">2.0.3.</span> <span class="nav-text">NO.3</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目-2"><span class="nav-number">2.0.3.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#样例：-2"><span class="nav-number">2.0.3.2.</span> <span class="nav-text">样例：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#源程序-2"><span class="nav-number">2.0.3.3.</span> <span class="nav-text">源程序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#运行结果-2"><span class="nav-number">2.0.3.4.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NO-4"><span class="nav-number">2.0.4.</span> <span class="nav-text">NO.4</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目-3"><span class="nav-number">2.0.4.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#样例：-3"><span class="nav-number">2.0.4.2.</span> <span class="nav-text">样例：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#源程序-3"><span class="nav-number">2.0.4.3.</span> <span class="nav-text">源程序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#运行结果-3"><span class="nav-number">2.0.4.4.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NO-5"><span class="nav-number">2.0.5.</span> <span class="nav-text">NO.5</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目-4"><span class="nav-number">2.0.5.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#样例：-4"><span class="nav-number">2.0.5.2.</span> <span class="nav-text">样例：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#源程序-4"><span class="nav-number">2.0.5.3.</span> <span class="nav-text">源程序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#运行结果-4"><span class="nav-number">2.0.5.4.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NO-6"><span class="nav-number">2.0.6.</span> <span class="nav-text">NO.6</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目-5"><span class="nav-number">2.0.6.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#样例：-5"><span class="nav-number">2.0.6.2.</span> <span class="nav-text">样例：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#源程序-5"><span class="nav-number">2.0.6.3.</span> <span class="nav-text">源程序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#运行结果-5"><span class="nav-number">2.0.6.4.</span> <span class="nav-text">运行结果</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NO-7"><span class="nav-number">2.0.7.</span> <span class="nav-text">NO.7</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#题目-6"><span class="nav-number">2.0.7.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#样例：-6"><span class="nav-number">2.0.7.2.</span> <span class="nav-text">样例：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#源程序-6"><span class="nav-number">2.0.7.3.</span> <span class="nav-text">源程序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#运行结果-6"><span class="nav-number">2.0.7.4.</span> <span class="nav-text">运行结果</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">3.</span> <span class="nav-text">后记</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sun Xin</span>
+<!--
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">18.5k</span>
+  
+-->
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站总访问量:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<!--
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+-->
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共18.5k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("VywWczYsUCdNy11PfMvNptFN-gzGzoHsz", "gxka2KgMQ716RGDTOnfqQwRL");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+</body>
+</html>
