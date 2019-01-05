@@ -111,9 +111,10 @@
 <meta property="og:description" content="前言&amp;emsp;&amp;emsp;&amp;ensp;浪了差不多半年时间，最近终于来到上海，开始着手做毕业设计了，笔者的毕设题目是“基于Rasa框架的任务型人机对话系统”，是一个与NLP相关的企业项目。当然，我的毕业设计肯定没有题目看起来的那么高端，因为已经有了框架，我只要学会如何使用就OK了，至于框架中涉及的各种复杂难解的配置以及算法，目前我只需把它们当成“黑匣子”，等知识储备够了再去钻研也不迟。&amp;emsp;">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/12/30/Rasa-bot-demo1/NO.1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/12/30/Rasa-bot-demo1/NO.4.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/30/Rasa-bot-demo1/NO.2.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/30/Rasa-bot-demo1/NO.3.png">
-<meta property="og:updated_time" content="2019-01-02T06:51:43.430Z">
+<meta property="og:updated_time" content="2019-01-05T05:18:17.091Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Rasa_bot_demo1">
 <meta name="twitter:description" content="前言&amp;emsp;&amp;emsp;&amp;ensp;浪了差不多半年时间，最近终于来到上海，开始着手做毕业设计了，笔者的毕设题目是“基于Rasa框架的任务型人机对话系统”，是一个与NLP相关的企业项目。当然，我的毕业设计肯定没有题目看起来的那么高端，因为已经有了框架，我只要学会如何使用就OK了，至于框架中涉及的各种复杂难解的配置以及算法，目前我只需把它们当成“黑匣子”，等知识储备够了再去钻研也不迟。&amp;emsp;">
@@ -462,7 +463,9 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><font face="楷体">前言</font></h2><p>&emsp;&emsp;&ensp;浪了差不多半年时间，最近终于来到上海，开始着手做毕业设计了，笔者的毕设题目是“基于Rasa框架的任务型人机对话系统”，是一个与NLP相关的企业项目。当然，我的毕业设计肯定没有题目看起来的那么高端，因为已经有了框架，我只要学会如何使用就OK了，至于框架中涉及的各种复杂难解的配置以及算法，目前我只需把它们当成“黑匣子”，等知识储备够了再去钻研也不迟。<br>&emsp;&emsp;&ensp;但是……我的老板似乎忘记了我是啥也不会的大四实习生，二话不说就把Rasa的官方文档甩给我让我去看明白🌚，于是我一脸懵逼地看了一个多星期，还是有一大堆内容没看懂，他才算了解我的真实水平，让我边看边做慢慢熟悉……于是我就完成了我的第一个简单的小<a href="https://github.com/Huntersxsx/FastFoodOrder_demo1" target="_blank" rel="noopener">demo</a>。<br>&emsp;&emsp;&ensp;虽然说着<a href="https://rasa.com/docs/" target="_blank" rel="noopener">官方文档</a>写的晦涩难懂（其实是我啥也不会，所以才看不懂😂），但是还是很有必要仔细过一遍。Rasa的官方文档主要包含了<a href="https://rasa.com/docs/nlu/" target="_blank" rel="noopener">NLU</a>和<a href="https://rasa.com/docs/core/" target="_blank" rel="noopener">Core</a>两部分，里面包含了很多内容，比如NLU中讲述了如何配置相关组件，完成Intent Classification和Entity Extraction，而Core主要讲述了如何利用Policy选择相应的Action，使得bot做出期望的response。对相关名词不太熟悉？没关系，看看这四篇介绍性博客（<a href="https://blog.csdn.net/qq_40027052/article/details/78723576" target="_blank" rel="noopener">1</a>、<a href="http://www.qianjia.com/html/2018-01/23_283253.html" target="_blank" rel="noopener">2</a>、<a href="https://zhuanlan.zhihu.com/p/38070033" target="_blank" rel="noopener">3</a>、<a href="https://zhuanlan.zhihu.com/p/38073496" target="_blank" rel="noopener">4</a>），会对你理解任务型机器人有很大的帮助。如果看完这些博客你已经对任务型机器人有了大概的了解，那么你便可以仔细阅读Rasa提供的官方文档了。除此之外，<a href="https://github.com/rasaHQ/" target="_blank" rel="noopener">Rasa的Github</a>里的内容也很丰富，你完全可以根据<a href="https://github.com/RasaHQ/starter-pack-rasa-stack" target="_blank" rel="noopener">Rasa Stack starter-pack</a>里的步骤一步到位安装好Rasa框架，而不需要根据官方文档所介绍的一步步安装rasa nlu和rasa core。</p>
 <h2 id="Demo-Fast-Food-Order"><a href="#Demo-Fast-Food-Order" class="headerlink" title="Demo: Fast Food Order"></a><font face="楷体">Demo: Fast Food Order</font></h2><p>&emsp;&emsp;&ensp;如果你把官方文档大致过了一遍的话，应该就能很轻松地明白我的小<a href="https://github.com/Huntersxsx/FastFoodOrder_demo1" target="_blank" rel="noopener">demo</a>。我的demo主要完成的就是快餐店点餐时顾客和营业员的简单交流，由于才学了Rasa没多久，所以对话做的简单并且不是很流畅，也没有考虑到<a href="https://rasa.com/docs/core/slotfilling/#handling-unhappy-paths" target="_blank" rel="noopener">“unhappy path”</a>的情况。以下就是我的demo完成的对话效果：</p>
 <center><img src="/2018/12/30/Rasa-bot-demo1/NO.1.jpg" width="400" hegiht="500"></center>
-这是[Interactive Training](https://rasa.com/docs/core/interactive_learning/)之后的结果。可以看出，bot充当了营业员的角色，询问user的点餐需求，然后计算需要支付的金额。知道了实现效果之后，再来看我的[demo](https://github.com/Huntersxsx/FastFoodOrder_demo1)中包含了哪些文件。
+这是[Interactive Training](https://rasa.com/docs/core/interactive_learning/)之后的结果。可以看出，bot充当了营业员的角色，询问user的点餐需求，然后计算需要支付的金额。不清楚的话就再看一下直接运行的结果吧：
+<center><img src="/2018/12/30/Rasa-bot-demo1/NO.4.png" width="700" hegiht="500"></center>
+如果还是不清楚，那就建议使用[debug模式](https://rasa.com/docs/core/debugging/#debugging)，这样就可以看清每一步bot接收到哪些信息，又会做出如何的反应。知道了实现效果之后，再来看我的[demo](https://github.com/Huntersxsx/FastFoodOrder_demo1)中包含了哪些文件。
 ### <font face="楷体">run.py</font>
 &emsp;&emsp;&ensp;这个文件中需要关注的是注释的部分，其余忽略即可
 
