@@ -117,7 +117,8 @@
 <meta property="og:image" content="http://yoursite.com/2018/12/30/Rasa-bot-demo1/NO.5.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/30/Rasa-bot-demo1/NO.6.png">
 <meta property="og:image" content="http://yoursite.com/2018/12/30/Rasa-bot-demo1/NO.7.png">
-<meta property="og:updated_time" content="2019-01-10T12:01:45.587Z">
+<meta property="og:image" content="http://yoursite.com/2018/12/30/Rasa-bot-demo1/NO.8.jpg">
+<meta property="og:updated_time" content="2019-01-16T16:08:43.609Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Rasa_bot_demo1">
 <meta name="twitter:description" content="前言&amp;emsp;&amp;emsp;&amp;ensp;浪了差不多半年时间，最近终于来到上海，开始着手做毕业设计了，笔者的毕设题目是“基于Rasa框架的任务型人机对话系统”，是一个与NLP相关的企业项目。当然，我的毕业设计肯定没有题目看起来的那么高端，因为已经有了框架，我只要学会如何使用就OK了，至于框架中涉及的各种复杂难解的配置以及算法，目前我只需把它们当成“黑匣子”，等知识储备够了再去钻研也不迟。&amp;emsp;">
@@ -426,7 +427,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2.5k
+                  2.6k
                 </span>
               
 
@@ -494,12 +495,16 @@
 
 <p>这一部分本质上与对话系统的关系不大，只是用来观察分类的准确性，但其实这个程序也不复杂，我也加了详细的注释，主要涉及的是正则表达式等基本的python操作，感兴趣的小伙伴可以自己看一看。</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a><font face="楷体">后记</font></h2><p>&emsp;&emsp;&ensp;目前，我的毕设工作已经展开了，2018年也来到了尾声，可能我还没有做好迎接新的一年的准备，或许是时候该慢慢收心了，愿自己能够在2019年里踏实科研、学有所成。</p>
-<h2 id="2019-1-10更"><a href="#2019-1-10更" class="headerlink" title="2019.1.10更"></a><font face="楷体">2019.1.10更</font></h2><p>&emsp;&emsp;&ensp;在之前的基础上，我又加了一些简单的功能，使得对话显得更加流畅，现在的功能主要包括：取消订单、更改食物数量、更改食物种类、计算价格、处理意外状况等。由于提取数字用到了<a href="https://rasa.com/docs/nlu/components/#ner-duckling-http" target="_blank" rel="noopener">duckling组件</a>，而duckling需要在Linux或者Mac OS系统中使用，所以我是在Ubantu虚拟机中进行的操作，由于之前没用过Linux系统，所以也趁着这个机会熟悉了一波。总的来说，这周还是学到了不少东西的，所以实习还是很有好处的😆，不仅能学习很多在学校学不到的知识，还吃得好睡得好，而且今天还发工资了😜，真是美哉~<br>&emsp;&emsp;&ensp;一些主要的文件比如action.py，stories_order.md，nlu_order.md，domian.yml等都进行了更改，鉴于此次的更改也不是完全版，所以就不把新的文件上传到Github中了，等毕设完成了再做更新吧😁。下面就放几张这次更新的效果图吧:</p>
+<h2 id="2019-1-10更"><a href="#2019-1-10更" class="headerlink" title="2019.1.10更"></a><font face="楷体">2019.1.10更</font></h2><p>&emsp;&emsp;&ensp;在之前的基础上，我又加了一些简单的功能，使得对话显得更加流畅，现在的功能主要包括：取消已定食物、更改食物数量、更改食物种类、计算价格、处理意外状况等。由于提取数字用到了<a href="https://rasa.com/docs/nlu/components/#ner-duckling-http" target="_blank" rel="noopener">duckling组件</a>，而duckling需要在Linux或者Mac OS系统中使用，所以我是在Ubantu虚拟机中进行的操作，由于之前没用过Linux系统，所以也趁着这个机会熟悉了一波。总的来说，这周还是学到了不少东西的，所以实习还是很有好处的😆，不仅能学习很多在学校学不到的知识，还吃得好睡得好，而且今天还发工资了😜，真是美哉~<br>&emsp;&emsp;&ensp;一些主要的文件比如action.py，stories_order.md，nlu_order.md，domian.yml等都进行了更改，鉴于此次的更改也不是完全版，所以就不把新的文件上传到Github中了，等毕设完成了再做更新吧😁。下面就放几张这次更新的效果图吧:</p>
 <center><img src="/2018/12/30/Rasa-bot-demo1/NO.5.png" width="700" hegiht="400"></center>
 
 <center><img src="/2018/12/30/Rasa-bot-demo1/NO.6.png" width="700" hegiht="400"></center>
 
 <center><img src="/2018/12/30/Rasa-bot-demo1/NO.7.png" width="700" hegiht="400"></center>
+
+<h2 id="2019-1-15更"><a href="#2019-1-15更" class="headerlink" title="2019.1.15更"></a><font face="楷体">2019.1.15更</font></h2><p>&emsp;&emsp;&ensp;在之前的基础上，又加了一些简单功能。之前的对话其实都可以视为是一次订单中的对话，包括对话中取消已定食物、更改食物数量、更改食物种类等，现在可进行多轮的点餐，新增功能主要包括查看订单、催单、取消订单、修改订单等，看了下面的效果图就一目了然啦。</p>
+<center><img src="/2018/12/30/Rasa-bot-demo1/NO.8.jpg" width="900" hegiht="3500"></center>
+
 
 
       
@@ -739,7 +744,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo-Fast-Food-Order"><span class="nav-number">2.</span> <span class="nav-text">Demo: Fast Food Order</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#run-py"><span class="nav-number">2.1.</span> <span class="nav-text">run.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jieba-test-py"><span class="nav-number">2.2.</span> <span class="nav-text">jieba_test.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nlu-config-tf-yml"><span class="nav-number">2.3.</span> <span class="nav-text">nlu_config_tf.yml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nlu-order-md"><span class="nav-number">2.4.</span> <span class="nav-text">nlu_order.md</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#domain-yml"><span class="nav-number">2.5.</span> <span class="nav-text">domain.yml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stories-order-md"><span class="nav-number">2.6.</span> <span class="nav-text">stories_order.md</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#actions-py"><span class="nav-number">2.7.</span> <span class="nav-text">actions.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#parse-nlu-data-py"><span class="nav-number">2.8.</span> <span class="nav-text">parse_nlu_data.py</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">3.</span> <span class="nav-text">后记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2019-1-10更"><span class="nav-number">4.</span> <span class="nav-text">2019.1.10更</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo-Fast-Food-Order"><span class="nav-number">2.</span> <span class="nav-text">Demo: Fast Food Order</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#run-py"><span class="nav-number">2.1.</span> <span class="nav-text">run.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jieba-test-py"><span class="nav-number">2.2.</span> <span class="nav-text">jieba_test.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nlu-config-tf-yml"><span class="nav-number">2.3.</span> <span class="nav-text">nlu_config_tf.yml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nlu-order-md"><span class="nav-number">2.4.</span> <span class="nav-text">nlu_order.md</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#domain-yml"><span class="nav-number">2.5.</span> <span class="nav-text">domain.yml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stories-order-md"><span class="nav-number">2.6.</span> <span class="nav-text">stories_order.md</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#actions-py"><span class="nav-number">2.7.</span> <span class="nav-text">actions.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#parse-nlu-data-py"><span class="nav-number">2.8.</span> <span class="nav-text">parse_nlu_data.py</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">3.</span> <span class="nav-text">后记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2019-1-10更"><span class="nav-number">4.</span> <span class="nav-text">2019.1.10更</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2019-1-15更"><span class="nav-number">5.</span> <span class="nav-text">2019.1.15更</span></a></li></ol></div>
             
 
           </div>
@@ -774,7 +779,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">21.2k</span>
+    <span title="Site words total count">21.3k</span>
   
 -->
 </div>
@@ -805,7 +810,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共21.2k字</span>
+  <span class="post-count">博客全站共21.3k字</span>
 </div>
 
         
